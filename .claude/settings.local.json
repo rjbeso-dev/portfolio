@@ -4,7 +4,18 @@
       "WebFetch(domain:www.linkedin.com)",
       "WebFetch(domain:mehaxan.com)",
       "Bash(npm -v)",
-      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --app --no-src-dir --turbopack --import-alias \"@/*\" --no-eslint --use-npm --yes)"
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --app --no-src-dir --turbopack --import-alias \"@/*\" --no-eslint --use-npm --yes)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(echo \"started, pid=$!\")",
+      "Read(//tmp/**)",
+      "Bash(curl -sS -o /tmp/portfolio-page.html -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\" http://localhost:3000/)",
+      "Read(//private/tmp/**)",
+      "Bash(curl -sS -6 -o /tmp/portfolio-page.html -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\" \"http://[::1]:3000/\")",
+      "Bash(kill 89335 89346 89347)",
+      "Bash(PORT=3030 npm run dev)",
+      "Bash(curl -sS -o /tmp/portfolio-page.html -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\" http://localhost:3030/)"
     ]
   }
 }
