@@ -92,3 +92,14 @@ body {
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
+
+/* Logo — theme-aware adaptation
+   The RJ monogram is a black-on-transparent PNG. In dark mode (default),
+   invert it to white so it's visible on the dark background. Light mode
+   keeps it black. */
+.logo-mark img {
+  filter: invert(1);
+}
+:root[data-theme="light"] .logo-mark img {
+  filter: none;
+}
