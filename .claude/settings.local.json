@@ -15,7 +15,15 @@
       "Bash(curl -sS -6 -o /tmp/portfolio-page.html -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\" \"http://[::1]:3000/\")",
       "Bash(kill 89335 89346 89347)",
       "Bash(PORT=3030 npm run dev)",
-      "Bash(curl -sS -o /tmp/portfolio-page.html -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\" http://localhost:3030/)"
+      "Bash(curl -sS -o /tmp/portfolio-page.html -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\" http://localhost:3030/)",
+      "Bash(curl -sS http://localhost:3030/ -o /tmp/portfolio-page.html)",
+      "Bash(curl -sS -o /dev/null -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\" http://localhost:3030/)",
+      "Bash(osascript -e 'try *)",
+      "Bash(curl -sS -o /tmp/portfolio-page.html http://localhost:3030/)",
+      "Bash(git -C /Users/arjey_08/Desktop/portfolio status -s)",
+      "Bash(git -C /Users/arjey_08/Desktop/portfolio log --oneline)",
+      "Bash(xattr /Users/arjey_08/Desktop/portfolio/lib/data.ts)",
+      "Bash(xattr /Users/arjey_08/Desktop/portfolio/components/Logo.tsx)"
     ]
   }
 }
