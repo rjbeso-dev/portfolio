@@ -43,7 +43,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-center overflow-hidden pb-32 pt-24"
+      className="relative flex min-h-screen items-center overflow-hidden pb-32 pt-24 "
     >
       {/* Ambient gradients */}
       <motion.div

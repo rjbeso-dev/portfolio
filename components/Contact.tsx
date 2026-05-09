@@ -14,7 +14,7 @@ const links = [
 
 export default function Contact() {
   return (
-    <Section id="contact" number="05" title="Contact">
+    <Section id="contact" number="06" title="Contact">
       <div className="grid gap-12 md:grid-cols-[2fr,1fr]">
         <div>
           <motion.h3

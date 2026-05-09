@@ -5,7 +5,7 @@ export default function Stack() {
   // Duplicate for seamless marquee loop
   const items = [...stack, ...stack];
   return (
-    <Section id="stack" number="04" title="Stack">
+    <Section id="stack" number="05" title="Stack">
       <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
         <h3 className="max-w-xl text-3xl font-medium leading-tight tracking-tight md:text-5xl">
           Tools I <span className="italic text-fg-muted">reach for</span>.
