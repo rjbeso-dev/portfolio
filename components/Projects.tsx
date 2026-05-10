@@ -19,7 +19,7 @@ export default function Projects() {
       <p className="mb-12 max-w-2xl text-lg text-fg-muted md:text-xl">
         Real problems, the approach I took, and the outcome.
       </p>
-      <ul className="grid gap-4 lg:grid-cols-2">
+      <ul className="grid gap-4 md:grid-cols-2">
         {projects.map((p, i) => (
           <motion.li
             key={p.name}
@@ -32,7 +32,7 @@ export default function Projects() {
               href={p.href || "#"}
               target={p.href?.startsWith("http") ? "_blank" : undefined}
               rel="noreferrer"
-              className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-line bg-bg-elev/30 p-6 transition-all hover:border-fg/30 hover:bg-bg-elev md:p-8"
+              className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-line bg-bg-elev/30 p-6 transition-all hover:border-fg/30 hover:bg-bg-elev md:p-7 lg:p-8"
             >
               <div
                 aria-hidden
