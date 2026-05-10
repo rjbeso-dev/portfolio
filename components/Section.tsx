@@ -16,7 +16,7 @@ export default function Section({ id, number, title, children, className = "" }:
   const inView = useInView(ref, { once: true, margin: "-15% 0px -15% 0px" });
 
   return (
-    <section id={id} className={`relative py-28 md:py-36 ${className}`}>
+    <section id={id} className={`relative py-20 md:py-28 lg:py-36 ${className}`}>
       <div ref={ref} className="mx-auto max-w-5xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
