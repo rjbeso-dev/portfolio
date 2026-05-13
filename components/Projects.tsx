@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowUpRight, ImageIcon } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, ChevronLeft, ChevronRight, ImageIcon, X } from "lucide-react";
 import Section from "./Section";
-import { projects } from "@/lib/data";
+import { projects, type ProjectScreenshot } from "@/lib/data";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -13,7 +14,54 @@ const statusStyle: Record<string, string> = {
   "Case study": "border-line text-fg-muted",
 };
 
+type LightboxState = {
+  screenshots: ProjectScreenshot[];
+  index: number;
+};
+
 export default function Projects() {
+  const [lightbox, setLightbox] = useState<LightboxState | null>(null);
+
+  const close = useCallback(() => setLightbox(null), []);
+
+  const next = useCallback(() => {
+    setLightbox((prev) => {
+      if (!prev) return null;
+      return {
+        ...prev,
+        index: (prev.index + 1) % prev.screenshots.length,
+      };
+    });
+  }, []);
+
+  const previous = useCallback(() => {
+    setLightbox((prev) => {
+      if (!prev) return null;
+      return {
+        ...prev,
+        index:
+          (prev.index - 1 + prev.screenshots.length) % prev.screenshots.length,
+      };
+    });
+  }, []);
+
+  // Lock body scroll + keyboard navigation while lightbox is open
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowRight") next();
+      else if (e.key === "ArrowLeft") previous();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [lightbox, close, next, previous]);
+
   return (
     <Section id="projects" number="04" title="Case Studies">
       <p className="mb-12 max-w-2xl text-lg text-fg-muted md:text-xl">
@@ -30,9 +78,7 @@ export default function Projects() {
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={{ duration: 0.6, delay: i * 0.06, ease: EASE }}
             >
-              <article
-                className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-line bg-bg-elev/30 p-6 transition-all hover:border-fg/30 hover:bg-bg-elev md:p-7 lg:p-8"
-              >
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-line bg-bg-elev/30 p-6 transition-all hover:border-fg/30 hover:bg-bg-elev md:p-7 lg:p-8">
                 <div
                   aria-hidden
                   className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-accent/[0.04] opacity-0 blur-2xl transition-opacity group-hover:opacity-100"
@@ -97,7 +143,7 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Screenshots gallery — horizontal scroll */}
+                {/* Screenshots gallery — horizontal scroll, click to lightbox */}
                 {p.screenshots && p.screenshots.length > 0 && (
                   <div className="relative mt-7">
                     <div className="mb-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-fg-dim">
@@ -107,13 +153,17 @@ export default function Projects() {
                     </div>
                     <div className="no-scrollbar flex gap-3 overflow-x-auto pb-1">
                       {p.screenshots.map((s, j) => (
-                        <a
+                        <button
                           key={j}
-                          href={s.src}
-                          target="_blank"
-                          rel="noreferrer"
+                          type="button"
+                          onClick={() =>
+                            setLightbox({
+                              screenshots: p.screenshots!,
+                              index: j,
+                            })
+                          }
                           title={s.caption || s.alt}
-                          className="group/shot relative block aspect-video w-48 shrink-0 overflow-hidden rounded-md border border-line bg-bg-elev/60 transition-all hover:border-accent/40"
+                          className="group/shot relative block aspect-video w-48 shrink-0 cursor-zoom-in overflow-hidden rounded-md border border-line bg-bg-elev/60 transition-all hover:border-accent/40"
                         >
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
@@ -123,11 +173,11 @@ export default function Projects() {
                             className="h-full w-full object-cover transition-transform duration-500 group-hover/shot:scale-105"
                           />
                           {s.caption && (
-                            <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full bg-bg/90 px-2 py-1 font-mono text-[9px] uppercase tracking-wider text-fg-muted opacity-0 backdrop-blur transition-all duration-300 group-hover/shot:translate-y-0 group-hover/shot:opacity-100">
+                            <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full bg-bg/90 px-2 py-1 text-left font-mono text-[9px] uppercase tracking-wider text-fg-muted opacity-0 backdrop-blur transition-all duration-300 group-hover/shot:translate-y-0 group-hover/shot:opacity-100">
                               {s.caption}
                             </span>
                           )}
-                        </a>
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -149,6 +199,115 @@ export default function Projects() {
           );
         })}
       </ul>
+
+      {/* Lightbox overlay */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            key="lightbox"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="fixed inset-0 z-50 flex items-center justify-center"
+            role="dialog"
+            aria-modal="true"
+            aria-label={lightbox.screenshots[lightbox.index].alt}
+          >
+            {/* Backdrop — click to close */}
+            <button
+              type="button"
+              onClick={close}
+              aria-label="Close screenshot viewer"
+              className="absolute inset-0 cursor-zoom-out bg-bg/95 backdrop-blur-md"
+            />
+
+            {/* Counter */}
+            <span className="pointer-events-none absolute left-6 top-6 z-10 font-mono text-xs uppercase tracking-[0.22em] text-fg-muted">
+              {lightbox.index + 1} / {lightbox.screenshots.length}
+            </span>
+
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={close}
+              aria-label="Close"
+              className="absolute right-6 top-6 z-10 grid h-10 w-10 place-items-center rounded-full border border-line bg-bg-elev/80 text-fg-muted transition-all hover:border-accent/60 hover:text-fg"
+            >
+              <X className="h-4 w-4" />
+            </button>
+
+            {/* Prev */}
+            {lightbox.screenshots.length > 1 && (
+              <button
+                type="button"
+                onClick={previous}
+                aria-label="Previous screenshot"
+                className="absolute left-6 top-1/2 z-10 hidden -translate-y-1/2 place-items-center rounded-full border border-line bg-bg-elev/80 text-fg-muted transition-all hover:border-accent/60 hover:text-fg md:grid md:h-12 md:w-12"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+            )}
+
+            {/* Next */}
+            {lightbox.screenshots.length > 1 && (
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Next screenshot"
+                className="absolute right-6 top-1/2 z-10 hidden -translate-y-1/2 place-items-center rounded-full border border-line bg-bg-elev/80 text-fg-muted transition-all hover:border-accent/60 hover:text-fg md:grid md:h-12 md:w-12"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            )}
+
+            {/* Image */}
+            <motion.div
+              key={`shot-${lightbox.index}`}
+              initial={{ opacity: 0, scale: 0.96, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.25, ease: EASE }}
+              className="relative z-[5] mx-6 max-h-[82vh] max-w-[92vw]"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={lightbox.screenshots[lightbox.index].src}
+                alt={lightbox.screenshots[lightbox.index].alt}
+                className="max-h-[82vh] max-w-[92vw] rounded-lg border border-line shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              />
+              {lightbox.screenshots[lightbox.index].caption && (
+                <p className="mx-auto mt-4 max-w-2xl text-center font-mono text-[10px] uppercase tracking-[0.22em] text-fg-muted">
+                  {lightbox.screenshots[lightbox.index].caption}
+                </p>
+              )}
+            </motion.div>
+
+            {/* Mobile prev/next inline at bottom */}
+            {lightbox.screenshots.length > 1 && (
+              <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-3 md:hidden">
+                <button
+                  type="button"
+                  onClick={previous}
+                  aria-label="Previous"
+                  className="grid h-10 w-10 place-items-center rounded-full border border-line bg-bg-elev/80 text-fg-muted transition-all active:scale-95"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={next}
+                  aria-label="Next"
+                  className="grid h-10 w-10 place-items-center rounded-full border border-line bg-bg-elev/80 text-fg-muted transition-all active:scale-95"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Section>
   );
 }
