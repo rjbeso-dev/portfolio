@@ -71,6 +71,12 @@ export const experience: Experience[] = [
   },
 ];
 
+export type ProjectScreenshot = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
 export type Project = {
   name: string;
   category: "Full-Stack" | "AI Automation" | "Site";
@@ -81,6 +87,7 @@ export type Project = {
   status?: "Live" | "In progress" | "Case study";
   href?: string;
   tags: string[];
+  screenshots?: ProjectScreenshot[];
 };
 
 export const projects: Project[] = [
@@ -104,13 +111,40 @@ export const projects: Project[] = [
     problem:
       "Manually scrolling through LinkedIn, WeWorkRemotely, and RemoteOK is hours of work to surface a few relevant roles — and most listings are a 30-second skim before moving on.",
     approach:
-      "Building an n8n workflow that pulls live job listings from RSS feeds every 6 hours, scores each role 1–10 against my CV via Claude API, drafts a personalised cover letter for the top matches, and delivers a daily digest to email and Slack with everything stored in Notion.",
+      "Built an n8n workflow that pulls live job listings from RSS feeds, scores each role 1–10 against my CV via the Claude API (Haiku 4.5), drafts a personalised cover letter for the top matches, filters by score, and writes each strong match into a Notion database with status, link, and reasoning.",
     outcome:
-      "Turns 2+ hours/day of job-hunting noise into a 5-minute morning review of pre-vetted, highest-fit roles. Replicable for any candidate with a CV and target keywords.",
+      "Live, end-to-end pipeline scoring ~10 jobs per run at ~$0.005/run. Turns 2+ hours of job-hunting noise into a 5-minute morning review of pre-vetted, highest-fit roles with cover letters already drafted. Replicable for any candidate.",
     year: "2026",
-    status: "In progress",
+    status: "Live",
     href: "#",
-    tags: ["n8n", "Claude API", "RSS", "Notion API", "Slack", "Webhooks"],
+    tags: ["n8n", "Claude API", "RSS", "Notion API", "JavaScript", "Webhooks"],
+    screenshots: [
+      {
+        src: "/case-studies/job-search-assistant/01-workflow-canvas.jpg",
+        alt: "n8n workflow canvas showing 9 connected nodes from Schedule Trigger to Notion database",
+        caption: "Full pipeline: Schedule → RSS → Claude API → Parse → Filter → Notion",
+      },
+      {
+        src: "/case-studies/job-search-assistant/02-claude-api.jpg",
+        alt: "HTTP Request node configuration calling Claude API with the system prompt and three Claude responses returned",
+        caption: "Claude API call (Haiku 4.5) — system prompt embeds the CV; per-job scoring returns structured JSON",
+      },
+      {
+        src: "/case-studies/job-search-assistant/03-scored-output.jpg",
+        alt: "Parsed scoring output table showing three jobs with scores 2, 7, and 3, each with reasoning and cover letter",
+        caption: "Parse node output — Claude's JSON extracted into structured fields with score, reasoning, and cover letter",
+      },
+      {
+        src: "/case-studies/job-search-assistant/04-notion-database.jpg",
+        alt: "Notion database view showing scored jobs with company, score, reasoning, cover letter, and status columns",
+        caption: "Notion 'Scored Jobs' database — every score-7+ match logged automatically with status 'To Apply'",
+      },
+      {
+        src: "/case-studies/job-search-assistant/05-notion-detail.jpg",
+        alt: "Notion page for a single scored job showing full cover letter, reasoning, score, and status",
+        caption: "Per-job detail view in Notion — ready-to-send cover letter generated against the CV",
+      },
+    ],
   },
   {
     name: "Meeting Notes → Action Items",
