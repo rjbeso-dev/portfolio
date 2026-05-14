@@ -109,20 +109,28 @@ export const projects: Project[] = [
     name: "AI Job Search Assistant",
     category: "AI Automation",
     problem:
-      "Manually scrolling through LinkedIn, WeWorkRemotely, and RemoteOK is hours of work to surface a few relevant roles — and most listings are a 30-second skim before moving on.",
+      "Manually scrolling through LinkedIn, WeWorkRemotely, RemoteOK, and Hacker News is hours of work to surface a few relevant roles — and most listings are a 30-second skim before moving on. Worse, the same job posted across multiple boards turns into duplicate noise.",
     approach:
-      "Built an n8n workflow that pulls live job listings from RSS feeds, scores each role 1–10 against my CV via the Claude API (Haiku 4.5), drafts a personalised cover letter for the top matches, filters by score, and writes each strong match into a Notion database with status, link, and reasoning.",
+      "Built a production-grade n8n workflow that aggregates live job listings from 4 RSS sources (WeWorkRemotely, RemoteOK, Jobicy, HN Jobs) in parallel, deduplicates within and across runs by querying my Notion database for already-scored jobs, scores each new role 1–10 against my CV via the Claude API (Haiku 4.5), drafts a personalised cover letter for the top matches, filters by score, and writes each strong match into Notion with status, link, and reasoning. Throttled with HTTP batching to respect API rate limits.",
     outcome:
-      "Live, end-to-end pipeline scoring ~10 jobs per run at ~$0.005/run. Turns 2+ hours of job-hunting noise into a 5-minute morning review of pre-vetted, highest-fit roles with cover letters already drafted. Replicable for any candidate.",
+      "Live, multi-source, self-deduplicating pipeline. ~250 jobs aggregated and filtered down to 10 new ones scored per run at ~$0.015/run. Notion-backed memory means the system never re-scores the same job twice — costs stay flat as the database grows. Turns 2+ hours of daily job-hunting noise into a 5-minute morning review of pre-vetted, highest-fit roles with cover letters already drafted.",
     year: "2026",
     status: "Live",
     href: "#",
-    tags: ["n8n", "Claude API", "RSS", "Notion API", "JavaScript", "Webhooks"],
+    tags: [
+      "n8n",
+      "Claude API",
+      "Notion API",
+      "RSS",
+      "JavaScript",
+      "Rate limiting",
+      "Multi-source dedup",
+    ],
     screenshots: [
       {
         src: "/case-studies/job-search-assistant/01-workflow-canvas.jpg",
-        alt: "n8n workflow canvas showing 9 connected nodes from Schedule Trigger to Notion database",
-        caption: "Full pipeline: Schedule → RSS → Claude API → Parse → Filter → Notion",
+        alt: "n8n workflow canvas showing 4 parallel RSS sources merging into a dedup + Claude scoring pipeline that writes filtered matches to Notion",
+        caption: "Production architecture: 4 parallel RSS feeds → dedup against Notion → Claude scores 10 new jobs → top matches stored",
       },
       {
         src: "/case-studies/job-search-assistant/02-claude-api.jpg",
