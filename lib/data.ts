@@ -152,13 +152,40 @@ export const projects: Project[] = [
     problem:
       "Action items, decisions, and key topics buried in 60-minute meeting recordings — turning recordings into useful, distributed outputs is a manual job nobody wants to do.",
     approach:
-      "Building an n8n pipeline triggered on file upload to a Drive folder. Whisper API transcribes audio, Claude API extracts and categorises action items, decisions, and topics, then branches the output: tasks to Notion, decisions to a log database, and a summary email to attendees.",
+      "Built a 6-node n8n pipeline that chains two LLM APIs: Whisper transcribes the meeting audio, Claude Haiku 4.5 extracts structured action items + decisions + topics into a strict JSON schema (with owner, due date, priority), a Code node parses and flattens the response into individual items, and each item is written to a Notion database with the correct type, status, and meeting date.",
     outcome:
-      "Multi-step LLM pipeline that converts a meeting recording into structured, distributed output in under 90 seconds. Generalisable across teams of any size.",
+      "Audio file in → structured Notion database out in ~10 seconds, for ~$0.001 per minute of audio. Working end-to-end pipeline producing real, sendable tasks with owner + due date + priority. Generalisable across teams of any size.",
     year: "2026",
-    status: "In progress",
+    status: "Live",
     href: "#",
-    tags: ["n8n", "Whisper API", "Claude API", "Notion", "Google Drive"],
+    tags: ["n8n", "Whisper API", "Claude API", "Notion API", "JavaScript"],
+    screenshots: [
+      {
+        src: "/case-studies/meeting-notes/01-workflow-canvas.jpg",
+        alt: "n8n workflow canvas showing 6 connected nodes from manual trigger through Whisper and Claude APIs to Notion",
+        caption: "Full pipeline: trigger → read audio → Whisper → Claude → parse → Notion",
+      },
+      {
+        src: "/case-studies/meeting-notes/02-audio-file.jpg",
+        alt: "Read/Write Files from Disk node showing meeting.m4a audio file loaded as binary input",
+        caption: "Source audio loaded from disk — 522 kB m4a recording",
+      },
+      {
+        src: "/case-studies/meeting-notes/03-whisper-transcription.jpg",
+        alt: "Whisper API response panel showing clean transcribed text of the meeting recording",
+        caption: "Whisper transcription — 18 seconds of speech rendered as clean text",
+      },
+      {
+        src: "/case-studies/meeting-notes/04-claude-extraction.jpg",
+        alt: "Claude API response with structured JSON containing action_items, decisions, and topics arrays",
+        caption: "Claude Haiku 4.5 extracts structured JSON — action items, decisions, topics with owner + priority",
+      },
+      {
+        src: "/case-studies/meeting-notes/05-notion-output.jpg",
+        alt: "Notion Meeting Outputs database populated with 6 rows: 2 action items, 1 decision, 3 topics",
+        caption: "Final Notion database — 6 typed rows automatically written, ready to assign and track",
+      },
+    ],
   },
   {
     name: "Portfolio (this site)",
