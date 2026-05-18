@@ -39,11 +39,11 @@ export type Experience = {
 export const experience: Experience[] = [
   {
     company: "ouvar®",
-    role: "Product Developer",
+    role: "Product Developer · Project Manager · Scrum Master",
     period: "Feb 2025 — May 2026",
     description:
-      "Translated business requirements into shipped product — owned UI design in Figma, sprint planning in Jira and Confluence, and the daily loop with developers, QA, and stakeholders. Designed and built a full-stack project management platform (React, Node.js, Express, Prisma, PostgreSQL) deployed to production.",
-    stack: ["React", "Node.js", "PostgreSQL", "Figma", "Jira"],
+      "Wore three hats end-to-end — ran sprint planning, daily standups, and backlog grooming as Scrum Master; owned roadmap, ticket flow, and stakeholder updates in Jira and Confluence as Project Manager; and translated business requirements into shipped product as Product Developer, owning UI design in Figma and the daily loop with developers and QA. Designed and built a full-stack project management SaaS (React, Node.js, Express, Prisma, PostgreSQL) deployed to production.",
+    stack: ["React", "Node.js", "PostgreSQL", "Figma", "Jira", "Confluence", "Scrum"],
   },
   {
     company: "ouvar®",
@@ -58,13 +58,13 @@ export const experience: Experience[] = [
     role: "Onboarding & QA",
     period: "May 2024 — Sept 2024",
     description:
-      "Onboarded new clients onto the OUVAR logistics platform with structured training and documentation. Performed QA across platform features prior to release; logged and verified defect fixes.",
+      "Onboarded new clients onto the ouvar® logistics platform with structured training and documentation. Performed QA across platform features prior to release; logged and verified defect fixes.",
     stack: ["Jira", "Confluence"],
   },
   {
     company: "Hacktiv Colab Inc",
     role: "Microsoft PowerApps Developer",
-    period: "Mar 2023 — Aug 2024",
+    period: "Mar 2023 — Sept 2023",
     description:
       "Built business applications on the Microsoft Power Platform for enterprise clients. Designed PowerApps interfaces and Power Automate workflows integrated with SharePoint, Dataverse, and Office 365.",
     stack: ["PowerApps", "Power Automate", "SharePoint", "Dataverse"],
@@ -79,7 +79,7 @@ export type ProjectScreenshot = {
 
 export type Project = {
   name: string;
-  category: "Full-Stack" | "AI Automation" | "Site";
+  category: "Full-Stack" | "Full-Stack SaaS" | "AI Automation" | "Site";
   problem: string;
   approach: string;
   outcome: string;
@@ -92,18 +92,18 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: "OUVAR Project Tracker",
-    category: "Full-Stack",
+    name: "ouvar® Project Tracker",
+    category: "Full-Stack SaaS",
     problem:
-      "An Australian logistics company couldn't fit any off-the-shelf project management tool to their workflow — 12 distinct user roles, three project types, and a hierarchical company → segment → brand scoping model that no SaaS supported.",
+      "An Australian logistics company couldn't fit any off-the-shelf project management tool to their workflow — 12 distinct user roles, three project types, and a hierarchical company → segment → brand scoping model that no existing SaaS supported.",
     approach:
-      "Designed a Postgres schema across ~18 entities, then built a React + Express + Prisma application from scratch. Implemented role-based access control with permission flags, Gantt scheduling with task dependencies, time logging, comments with @mentions, and a notification system. Used AI tooling as a build multiplier, owning every architectural decision and reviewing every line.",
+      "Designed a multi-tenant Postgres schema across ~18 entities with company → segment → brand isolation, then built a React + Express + Prisma SaaS from scratch. Implemented role-based access control with permission flags, Gantt scheduling with task dependencies, time logging, comments with @mentions, and a notification system. Used AI tooling as a build multiplier, owning every architectural decision and reviewing every line.",
     outcome:
-      "Shipped a production-ready replacement for the planned ClickUp rollout in ~390 hours over 26 days. 92 UAT cases documented. Deployed to production on Vercel + Railway with separate staging environments.",
+      "Shipped a production-ready SaaS replacement for the planned ClickUp rollout in ~390 hours over 26 days. 92 UAT cases documented. Deployed to production on Vercel + Railway with separate staging environments.",
     year: "2026",
     status: "Case study",
     href: "#",
-    tags: ["React 19", "Node.js", "Express", "Prisma", "PostgreSQL", "JWT", "Docker", "Vercel", "Railway"],
+    tags: ["SaaS", "Multi-tenant", "React 19", "Node.js", "Express", "Prisma", "PostgreSQL", "JWT", "Docker", "Vercel", "Railway"],
   },
   {
     name: "AI Job Search Assistant",
