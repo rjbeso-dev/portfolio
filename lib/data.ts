@@ -92,18 +92,65 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: "ouvar® Project Tracker",
+    name: "Linden — Project Tracker",
     category: "Full-Stack SaaS",
     problem:
-      "An Australian logistics company couldn't fit any off-the-shelf project management tool to their workflow — 12 distinct user roles, three project types, and a hierarchical company → segment → brand scoping model that no existing SaaS supported.",
+      "An Australian logistics technology company needed a project management platform that no off-the-shelf SaaS could fit — 12 distinct user roles, three project types, and a hierarchical company → segment → brand scoping model that required custom multi-tenancy from the ground up.",
     approach:
-      "Designed a multi-tenant Postgres schema across ~18 entities with company → segment → brand isolation, then built a React + Express + Prisma SaaS from scratch. Implemented role-based access control with permission flags, Gantt scheduling with task dependencies, time logging, comments with @mentions, and a notification system. Used AI tooling as a build multiplier, owning every architectural decision and reviewing every line.",
+      "Designed a multi-tenant Postgres schema across ~18 entities with company → segment → brand isolation, then built a React + Express + Prisma SaaS from scratch. Implemented role-based access control with permission flags, Gantt scheduling with task dependencies, time logging, comments with @mentions, a notification system, and parallel Kanban / Gantt / List / Calendar views. Used AI tooling as a build multiplier, owning every architectural decision and reviewing every line.",
     outcome:
-      "Shipped a production-ready SaaS replacement for the planned ClickUp rollout in ~390 hours over 26 days. 92 UAT cases documented. Deployed to production on Vercel + Railway with separate staging environments.",
+      "Shipped a production-ready SaaS replacement for the planned ClickUp rollout in ~390 hours over 26 days. 92 UAT cases documented. Deployed to production on Vercel + Railway with separate staging environments. Case-study screenshots use anonymized branding (Linden) out of respect for the original client.",
     year: "2026",
     status: "Case study",
     href: "#",
     tags: ["SaaS", "Multi-tenant", "React 19", "Node.js", "Express", "Prisma", "PostgreSQL", "JWT", "Docker", "Vercel", "Railway"],
+    screenshots: [
+      {
+        src: "/case-studies/linden-project-tracker/01-hero-login.jpg",
+        alt: "Linden Project Tracker login page — split-panel layout with serif wordmark on a dark green hero panel and a clean sign-in card on the right",
+        caption: "Login — split-panel hero with the Linden serif wordmark and leaf mark",
+      },
+      {
+        src: "/case-studies/linden-project-tracker/02-dashboard.jpg",
+        alt: "Operations Dashboard showing portfolio health 38/100, active projects, on-time delivery rate, at-risk count, project pipeline by stage, and risks/blockers list",
+        caption: "Operations Dashboard — KPIs, project pipeline by stage, risks & blockers panel",
+      },
+      {
+        src: "/case-studies/linden-project-tracker/03-dashboard-dark.jpg",
+        alt: "Same Operations Dashboard rendered in dark mode — proves the theming system, not a one-off design",
+        caption: "Dashboard — dark mode (full theming system, not a single design)",
+      },
+      {
+        src: "/case-studies/linden-project-tracker/04-gantt.jpg",
+        alt: "Gantt chart view with Briefing & Planning and Production milestones, sub-tasks, task dependency arrows, and a week/month/quarter/year timescale switcher",
+        caption: "Gantt — milestones, sub-tasks, dependency arrows, multi-scale timeline",
+      },
+      {
+        src: "/case-studies/linden-project-tracker/05-gantt-dark.jpg",
+        alt: "Gantt view in dark mode showing the same project structure with dependency arrows visible against the dark canvas",
+        caption: "Gantt — dark mode (same dependency logic, full theme parity)",
+      },
+      {
+        src: "/case-studies/linden-project-tracker/06-kanban.jpg",
+        alt: "Kanban board with Briefing, Planning, Production, Shipping, and Warehouse columns; project cards show client, brand, activation date, delivery date, assignee, and priority",
+        caption: "Kanban — five-column workflow with project cards and inline priority cues",
+      },
+      {
+        src: "/case-studies/linden-project-tracker/07-project-detail.jpg",
+        alt: "Project detail modal showing breadcrumbs, properties sidebar (assignee, status, priority, container status, project stage), tabs (Overview, Items, Attachments, Activity), core information section, bulk order details, and comments thread",
+        caption: "Project detail — properties sidebar, tabbed sections, comments, full activity log",
+      },
+      {
+        src: "/case-studies/linden-project-tracker/08-my-tasks.jpg",
+        alt: "My Tasks page with role badge, daily summary banner, stat cards (Total, To Do, In Progress, Overdue, Done), search and filters, and an overdue task list with project tags, due dates, statuses, and time-logged progress bars",
+        caption: "My Tasks — personal view with daily summary, stat cards, and time-logged progress",
+      },
+      {
+        src: "/case-studies/linden-project-tracker/10-user-management.jpg",
+        alt: "User Management table showing user avatars, names, emails, roles (Super Admin, Brand Manager, Operations Manager, Account Manager), six permission flags per user (Form Access, Dashboard Access, Edit Projects, etc.), brand assignment, and Edit/Delete actions",
+        caption: "User Management — RBAC with 12 roles and 6 permission flags per user",
+      },
+    ],
   },
   {
     name: "AI Job Search Assistant",
