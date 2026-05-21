@@ -19,7 +19,7 @@ export const profile = {
 export const about = [
   "I'm a full-stack developer based in the Philippines, working across React, Node.js, PostgreSQL, and AI-powered automation tooling (n8n + LLM APIs). Currently open to new remote roles.",
   "I like owning a problem end-to-end — from understanding what people actually need, through data modelling and engineering, to deployment and the small details that make products feel polished. Boring tech that works beats clever tech that doesn't.",
-  "Recently I designed and built a complete project management platform for an Australian logistics company (React + Express + Prisma + PostgreSQL, ~390 hours, deployed to production), and I'm currently building AI automation workflows that turn manual business processes into self-running pipelines.",
+  "Recently I designed and built a complete project management platform for an Australian logistics company — wearing three hats end-to-end as Product Developer, Project Manager, and Scrum Master. React + Express + Prisma + PostgreSQL, ~390 hours, deployed to production. I'm currently building AI automation workflows that turn manual business processes into self-running pipelines.",
 ];
 
 export const aboutMeta = {
