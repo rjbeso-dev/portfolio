@@ -202,6 +202,20 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "Briarworks Operator OS",
+    category: "AI Automation",
+    problem:
+      "Founders spend 90+ minutes a day triaging email that a multi-LLM pipeline could categorise, route, and pre-draft — but most automation tools focus on the tool first and the work last. Real inbox triage needs confidence-aware routing, voice-aware drafting, and defensive design at every layer; without those, the system silently misclassifies and humans stop trusting the output.",
+    approach:
+      "Designed Workflow 1 of a synthetic-persona operator system around Sarah Chen, a fictional Series A B2B SaaS founder. A 9-node n8n pipeline accepts inbound email JSON via webhook, Claude Haiku 4.5 classifies each into 5 categories with confidence + reasoning, a Switch routes Respond Needed items through a second Claude call to generate three reply variations (formal, casual, direct), and a final Code + Notion path writes structured rows to a Notion database. Five layers of defensive design: HTTP rate-limit batching at 1500ms, markdown code-fence stripping on every LLM response, confidence-threshold fallback to FYI on uncertain categorisations, cross-branch data preservation via n8n pairing (so the Drafter's response doesn't lose email context), and Notion select-option normalisation before writes. Synthetic test fixtures with ground-truth labels validate accuracy on every run.",
+    outcome:
+      "20 emails processed end-to-end in ~50 seconds at ~$0.015 per run. Three sendable reply variations per Respond Needed item, in the founder's voice. First workflow of a multi-pipeline operator system — Meeting Processor, Nudge Bot, and Weekly Brief in progress. Eight distinct n8n quirks debugged from production-style errors during the build, each captured in the case study as a worked example of senior-engineer-style diagnosis.",
+    year: "2026",
+    status: "Live",
+    href: "#",
+    tags: ["n8n", "Claude Haiku 4.5", "Notion API", "JavaScript", "Multi-LLM orchestration", "Defensive design", "Synthetic persona"],
+  },
+  {
     name: "Meeting Notes → Action Items",
     category: "AI Automation",
     problem:
