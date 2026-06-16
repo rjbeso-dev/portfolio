@@ -144,7 +144,7 @@ export default function Projects() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-0 z-40 flex items-start justify-center overflow-y-auto py-10 md:py-16"
+            className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto py-10 md:py-16"
             role="dialog"
             aria-modal="true"
             aria-label={selectedProject.name}
@@ -196,7 +196,7 @@ export default function Projects() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="fixed inset-0 z-50 flex items-center justify-center"
+            className="fixed inset-0 z-[70] flex items-center justify-center"
             role="dialog"
             aria-modal="true"
             aria-label={lightbox.screenshots[lightbox.index].alt}
