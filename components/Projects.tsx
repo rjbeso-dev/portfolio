@@ -9,9 +9,9 @@ import { projects, type Project, type ProjectScreenshot } from "@/lib/data";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const statusStyle: Record<string, string> = {
-  Live: "border-accent/40 text-accent",
-  "In progress": "border-accent-warm/40 text-accent-warm",
-  "Case study": "border-line text-fg-muted",
+  Live: "text-accent",
+  "In progress": "text-accent-warm",
+  "Case study": "text-fg-muted",
 };
 
 type LightboxState = {
@@ -249,7 +249,7 @@ export default function Projects() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.25, ease: EASE }}
-              className="relative z-[5] mx-6 max-h-[82vh] max-w-[92vw]"
+              className="relative z-[5] mx-6 flex max-h-[82vh] max-w-[92vw] flex-col items-center"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -322,10 +322,18 @@ function FullCard({
         </div>
         {p.status && (
           <span
-            className={`rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider ${
-              statusStyle[p.status] ?? "border-line text-fg-muted"
+            className={`inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] ${
+              statusStyle[p.status] ?? "text-fg-muted"
             }`}
           >
+            {p.status === "Live" ? (
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-75" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-current" />
+              </span>
+            ) : (
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-current" />
+            )}
             {p.status}
           </span>
         )}
@@ -457,10 +465,18 @@ function CompactCard({
         </div>
         {p.status && (
           <span
-            className={`rounded-full border px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider ${
-              statusStyle[p.status] ?? "border-line text-fg-muted"
+            className={`inline-flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.18em] ${
+              statusStyle[p.status] ?? "text-fg-muted"
             }`}
           >
+            {p.status === "Live" ? (
+              <span className="relative flex h-1 w-1">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-75" />
+                <span className="relative inline-flex h-1 w-1 rounded-full bg-current" />
+              </span>
+            ) : (
+              <span className="inline-block h-1 w-1 rounded-full bg-current" />
+            )}
             {p.status}
           </span>
         )}

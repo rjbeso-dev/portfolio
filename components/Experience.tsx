@@ -29,16 +29,9 @@ export default function Experience() {
                 {job.description}
               </p>
               {job.stack && (
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {job.stack.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded-full border border-line px-2.5 py-1 font-mono text-[11px] text-fg-muted"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
+                <p className="mt-5 font-mono text-[11px] text-fg-muted">
+                  {job.stack.join(" · ")}
+                </p>
               )}
             </div>
           </motion.li>
