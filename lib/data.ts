@@ -11,7 +11,7 @@ export const profile = {
   email: "rjbeso@gmail.com",
   socials: {
     linkedin: "https://www.linkedin.com/in/rj-beso/",
-    github: "https://github.com/rjbeso",
+    github: "https://github.com/rjbeso-dev",
     twitter: "",
   },
 };
@@ -19,7 +19,7 @@ export const profile = {
 export const about = [
   "I'm a full-stack developer based in the Philippines, working across React, Node.js, PostgreSQL, and AI-powered automation tooling (n8n + LLM APIs). Currently open to new remote roles.",
   "I like owning a problem end-to-end — from understanding what people actually need, through data modelling and engineering, to deployment and the small details that make products feel polished. Boring tech that works beats clever tech that doesn't.",
-  "Recently I designed and built a complete project management platform for an Australian logistics company — wearing three hats end-to-end as Product Developer, Project Manager, and Scrum Master. React + Express + Prisma + PostgreSQL, ~390 hours, deployed to production. I'm currently building AI automation workflows that turn manual business processes into self-running pipelines.",
+  "Recently I designed and built a complete project management platform for an Australian logistics company — wearing three hats end-to-end as Product Developer, Project Manager, and Scrum Master. React + Express + Prisma + PostgreSQL, about 390 hours, deployed to production. I'm currently building AI automation workflows that turn manual business processes into self-running pipelines.",
 ];
 
 export const aboutMeta = {
@@ -39,7 +39,7 @@ export type Experience = {
 export const experience: Experience[] = [
   {
     company: "ouvar®",
-    role: "Product Developer · Project Manager · Scrum Master",
+    role: "Product Developer (also Project Manager & Scrum Master)",
     period: "Feb 2025 — May 2026",
     description:
       "Wore three hats end-to-end — ran sprint planning, daily standups, and backlog grooming as Scrum Master; owned roadmap, ticket flow, and stakeholder updates in Jira and Confluence as Project Manager; and translated business requirements into shipped product as Product Developer, owning UI design in Figma and the daily loop with developers and QA. Designed and built a full-stack project management SaaS (React, Node.js, Express, Prisma, PostgreSQL) deployed to production.",
@@ -79,7 +79,7 @@ export type ProjectScreenshot = {
 
 export type Project = {
   name: string;
-  category: "Full-Stack" | "Full-Stack SaaS" | "AI Automation" | "Site";
+  category: "Full-Stack" | "Full-Stack SaaS" | "AI Automation" | "Email Marketing" | "Site";
   problem: string;
   approach: string;
   outcome: string;
@@ -99,7 +99,7 @@ export const projects: Project[] = [
     approach:
       "Designed a multi-tenant Postgres schema across ~18 entities with company → segment → brand isolation, then built a React + Express + Prisma SaaS from scratch. Implemented role-based access control with permission flags, Gantt scheduling with task dependencies, time logging, comments with @mentions, a notification system, and parallel Kanban / Gantt / List / Calendar views. Used AI tooling as a build multiplier, owning every architectural decision and reviewing every line.",
     outcome:
-      "Shipped a production-ready SaaS replacement for the planned ClickUp rollout in ~390 hours over 26 days. 92 UAT cases documented. Deployed to production on Vercel + Railway with separate staging environments. Case-study screenshots use anonymized branding (Linden) out of respect for the original client.",
+      "Shipped a production-ready SaaS replacement for the planned ClickUp rollout in about 390 hours as sole developer. 92 UAT cases documented. Deployed to production on Vercel + Railway with separate staging environments. Case-study screenshots use anonymized branding (Linden) out of respect for the original client.",
     year: "2026",
     status: "Case study",
     href: "#",
@@ -160,9 +160,9 @@ export const projects: Project[] = [
     approach:
       "Built a production-grade n8n workflow that aggregates live job listings from 4 RSS sources (WeWorkRemotely, RemoteOK, Jobicy, HN Jobs) in parallel, deduplicates within and across runs by querying my Notion database for already-scored jobs, scores each new role 1–10 against my CV via the Claude API (Haiku 4.5), drafts a personalised cover letter for the top matches, filters by score, and writes each strong match into Notion with status, link, and reasoning. Throttled with HTTP batching to respect API rate limits.",
     outcome:
-      "Live, multi-source, self-deduplicating pipeline. ~250 jobs aggregated and filtered down to 10 new ones scored per run at ~$0.015/run. Notion-backed memory means the system never re-scores the same job twice — costs stay flat as the database grows. Turns 2+ hours of daily job-hunting noise into a 5-minute morning review of pre-vetted, highest-fit roles with cover letters already drafted.",
+      "Multi-source, self-deduplicating pipeline that runs every morning. About 250 jobs aggregated and filtered down to 10 new ones scored per run at roughly $0.015 per run. Notion-backed memory means the system never re-scores the same job twice — costs stay flat as the database grows. Turns 2+ hours of daily job-hunting noise into a 5-minute morning review of pre-vetted, highest-fit roles with cover letters already drafted.",
     year: "2026",
-    status: "Live",
+    status: "Case study",
     href: "#",
     tags: [
       "n8n",
@@ -209,50 +209,87 @@ export const projects: Project[] = [
     approach:
       "Designed Workflow 1 of a synthetic-persona operator system around Sarah Chen, a fictional Series A B2B SaaS founder. A 9-node n8n pipeline accepts inbound email JSON via webhook, Claude Haiku 4.5 classifies each into 5 categories with confidence + reasoning, a Switch routes Respond Needed items through a second Claude call to generate three reply variations (formal, casual, direct), and a final Code + Notion path writes structured rows to a Notion database. Five layers of defensive design: HTTP rate-limit batching at 1500ms, markdown code-fence stripping on every LLM response, confidence-threshold fallback to FYI on uncertain categorisations, cross-branch data preservation via n8n pairing (so the Drafter's response doesn't lose email context), and Notion select-option normalisation before writes. Synthetic test fixtures with ground-truth labels validate accuracy on every run.",
     outcome:
-      "20 emails processed end-to-end in ~50 seconds at ~$0.015 per run. Three sendable reply variations per Respond Needed item, in the founder's voice. First workflow of a multi-pipeline operator system — Meeting Processor, Nudge Bot, and Weekly Brief in progress. Eight distinct n8n quirks debugged from production-style errors during the build, each captured in the case study as a worked example of senior-engineer-style diagnosis.",
+      "20 emails processed end-to-end in about 50 seconds at roughly $0.015 per run. Three sendable reply variations per Respond Needed item, in the founder's voice. Workflow 2 (Meeting Processor) also running — one Claude extraction call fans out to Decisions Log and Action Items databases in parallel, and grew out of my earlier Whisper-based meeting-notes pipeline (audio → transcription → structured extraction). Nudge Bot and Weekly Brief in progress. Eight distinct n8n quirks debugged from production-style errors during the build, each captured in the case study as a worked example of senior-engineer-style diagnosis.",
     year: "2026",
-    status: "Live",
+    status: "Case study",
     href: "#",
     tags: ["n8n", "Claude Haiku 4.5", "Notion API", "JavaScript", "Multi-LLM orchestration", "Defensive design", "Synthetic persona"],
-  },
-  {
-    name: "Meeting Notes → Action Items",
-    category: "AI Automation",
-    problem:
-      "Action items, decisions, and key topics buried in 60-minute meeting recordings — turning recordings into useful, distributed outputs is a manual job nobody wants to do.",
-    approach:
-      "Built a 6-node n8n pipeline that chains two LLM APIs: Whisper transcribes the meeting audio, Claude Haiku 4.5 extracts structured action items + decisions + topics into a strict JSON schema (with owner, due date, priority), a Code node parses and flattens the response into individual items, and each item is written to a Notion database with the correct type, status, and meeting date.",
-    outcome:
-      "Audio file in → structured Notion database out in ~10 seconds, for ~$0.001 per minute of audio. Working end-to-end pipeline producing real, sendable tasks with owner + due date + priority. Generalisable across teams of any size.",
-    year: "2026",
-    status: "Live",
-    href: "#",
-    tags: ["n8n", "Whisper API", "Claude API", "Notion API", "JavaScript"],
     screenshots: [
       {
-        src: "/case-studies/meeting-notes/01-workflow-canvas.jpg",
-        alt: "n8n workflow canvas showing 6 connected nodes from manual trigger through Whisper and Claude APIs to Notion",
-        caption: "Full pipeline: trigger → read audio → Whisper → Claude → parse → Notion",
+        src: "/case-studies/briarworks-operator-os/01-w1-workflow-canvas.jpg",
+        alt: "n8n workflow canvas for Workflow 1 (Inbox Triage) — 9 connected nodes: webhook trigger, Edit Fields, HTTP Request to Claude Classifier, Code in JavaScript for parsing, Switch router on Respond Needed, second HTTP Request to Claude Drafter, Merge node, Code in JavaScript1 for final assembly, and Notion create-page",
+        caption: "Workflow 1: Inbox Triage — 9-node pipeline from webhook to Notion, with Switch-routed Drafter for Respond Needed items",
       },
       {
-        src: "/case-studies/meeting-notes/02-audio-file.jpg",
-        alt: "Read/Write Files from Disk node showing meeting.m4a audio file loaded as binary input",
-        caption: "Source audio loaded from disk — 522 kB m4a recording",
+        src: "/case-studies/briarworks-operator-os/02-w1-claude-classifier.jpg",
+        alt: "Claude Haiku 4.5 HTTP Request node showing the classification call — request body embedding the founder-persona system prompt, batching at 1500ms, and output panel with structured JSON response containing category, confidence score, and reasoning",
+        caption: "Claude Classifier (Haiku 4.5) — structured JSON with category, confidence, and reasoning per email; 1500ms batching to stay within Anthropic rate limits",
       },
       {
-        src: "/case-studies/meeting-notes/03-whisper-transcription.jpg",
-        alt: "Whisper API response panel showing clean transcribed text of the meeting recording",
-        caption: "Whisper transcription — 18 seconds of speech rendered as clean text",
+        src: "/case-studies/briarworks-operator-os/03-w1-code-defensive-parser.jpg",
+        alt: "n8n Code node with JavaScript that strips markdown code fences from Claude responses via regex, extracts the first JSON block as a fallback, validates categories against an allow-list, and applies a confidence-threshold fallback to FYI on uncertain classifications",
+        caption: "Defensive parsing — markdown code-fence stripping, category allow-list validation, and confidence-threshold fallback so downstream nodes never see raw code fences or invalid categories",
       },
       {
-        src: "/case-studies/meeting-notes/04-claude-extraction.jpg",
-        alt: "Claude API response with structured JSON containing action_items, decisions, and topics arrays",
-        caption: "Claude Haiku 4.5 extracts structured JSON — action items, decisions, topics with owner + priority",
+        src: "/case-studies/briarworks-operator-os/04-w1-code-final-merger.jpg",
+        alt: "n8n Code in JavaScript1 node that assembles the final Notion payload — merges classifier output with the three draft variations from the Claude Drafter into a typed row with category display mapping, rounded confidence, triaged timestamp, and draft_formal, draft_casual, draft_direct fields",
+        caption: "Final merger — combines classifier output with the three draft variations (formal, casual, direct) into a single typed Notion row",
       },
       {
-        src: "/case-studies/meeting-notes/05-notion-output.jpg",
-        alt: "Notion Meeting Outputs database populated with 6 rows: 2 action items, 1 decision, 3 topics",
-        caption: "Final Notion database — 6 typed rows automatically written, ready to assign and track",
+        src: "/case-studies/briarworks-operator-os/05-w1-notion-inbox-log.jpg",
+        alt: "Notion Inbox Log database populated with real triage output — rows showing Subject, From, Category (Urgent Action), Confidence scores, Triaged At timestamps, Reasoning, Body Preview, and Has Draft flag for each processed email",
+        caption: "Inbox Log in Notion — populated rows with category, confidence, reasoning, and body preview per email",
+      },
+      {
+        src: "/case-studies/briarworks-operator-os/06-w2-workflow-canvas.jpg",
+        alt: "n8n workflow canvas for Workflow 2 (Meeting Processor) — fan-out architecture where a single Code node branches into two parallel Split Out nodes, each writing to its own Notion database (Decisions Log via the top branch, Action Items via the bottom branch)",
+        caption: "Workflow 2: Meeting Processor — fan-out architecture, one Claude extraction call feeding two parallel Notion writes",
+      },
+      {
+        src: "/case-studies/briarworks-operator-os/07-w2-code-extraction.jpg",
+        alt: "n8n Code node that parses Claude's meeting-extraction JSON response — normalizes decisions and action_items into typed arrays with priority display mapping, slices long fields to safe lengths, and filters out action items without a task or owner",
+        caption: "Code node — parses decisions and action_items from Claude's structured output, normalizes priorities, and filters incomplete items",
+      },
+      {
+        src: "/case-studies/briarworks-operator-os/08-w2-notion-decisions-log.jpg",
+        alt: "Notion Decisions Log database populated with rows showing Decision text, Meeting Title, Meeting Date, Rationale, Alternatives Considered, and Status for each decision extracted from processed meetings",
+        caption: "Decisions Log in Notion — decision text, meeting context, rationale, and alternatives considered per row",
+      },
+      {
+        src: "/case-studies/briarworks-operator-os/09-w2-notion-action-items.jpg",
+        alt: "Notion Action Items database populated with rows showing Task, Owner, Due Date, Source (Meeting), Source Meeting title, Status (To Do), and Priority (High/Medium) for extracted action items from meeting transcripts",
+        caption: "Action Items in Notion — task, owner, due date, source meeting, and priority for every extracted item",
+      },
+    ],
+  },
+  {
+    name: "ouvar® Customer Communications",
+    category: "Email Marketing",
+    problem:
+      "ouvar's customer base needed clear, consistent comms across multiple high-stakes moments: a V1 → V2 product migration that risked confusion and churn, ongoing feature releases that had to land without overwhelming users, and transactional moments where tone mattered. One-template-fits-all email design wasn't going to clear the bar.",
+    approach:
+      "Designed and built a multi-purpose email campaign system in Klaviyo, with each email type matched to a layout that fit its job. Product launches used a hero + features grid + FAQ structure to address migration anxieties upfront; single-feature releases used a 'what this means for you' benefit-translation pattern with embedded UI screenshots; transactional moments used a stripped-down centre-aligned layout with a single named contact CTA. Maintained brand-system consistency across ouvar standalone and ouvar × MARS co-branded variants.",
+    outcome:
+      "Three production campaigns shipped: V2 launch announcement with V1 → V2 migration FAQ, MoveMentum single-feature release ('Include zero availability toggle') with embedded UI screenshots and three-column benefit framing, and a post-survey thank-you with restrained transactional warmth. Each email landed in the register its purpose required — promotional energy for launches, restrained warmth for follow-ups — without compromising the brand system.",
+    year: "2025–2026",
+    status: "Live",
+    href: "#",
+    tags: ["Klaviyo", "Email marketing", "Campaign design", "Brand systems", "Information architecture", "UX writing"],
+    screenshots: [
+      {
+        src: "/case-studies/ouvar-emails/01-v2-launch.jpg",
+        alt: "ouvar V2 launch email — co-branded header with ouvar and MARS logos, hero with laptop dashboard mockup and Login Here CTA, six-feature grid (Multiple Catalogue Order, Detailed Stock Movements, Notification Preferences, Flexible Reports, Faster Bulk Imports, Training Resources), and a V1 → V2 migration FAQ section addressing data retention, login transition, and the new platform URL",
+        caption: "V2 launch announcement — co-branded with MARS, hero + features grid + V1 → V2 migration FAQ",
+      },
+      {
+        src: "/case-studies/ouvar-emails/02-movementum-feature.jpg",
+        alt: "ouvar MoveMentum feature release email — hero with 'You asked. We delivered.' tagline, single-feature focus on 'Include zero availability toggle', two embedded UI screenshots of the V2 catalogue view, and a three-column 'What this means for you?' benefit grid (Transparency, Forecasting, Control)",
+        caption: "MoveMentum feature release — single-feature narrative with embedded UI and benefit-translation framing",
+      },
+      {
+        src: "/case-studies/ouvar-emails/03-survey-thank-you.jpg",
+        alt: "ouvar Customer Survey thank-you email — large centred 'Thank you!' headline in brand green, body thanking participants for feedback on the POSM supply chain, a named contact CTA (Brew Hardinge at brew@ouvar.com) for additional feedback, and a clean restrained layout",
+        caption: "Customer Survey thank-you — restrained transactional layout with a single named contact CTA",
       },
     ],
   },
@@ -267,7 +304,7 @@ export const projects: Project[] = [
       "A site that doubles as both a portfolio and a working code sample.",
     year: "2026",
     status: "Live",
-    href: "https://github.com/rjbeso",
+    href: "#",
     tags: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
   },
 ];
@@ -319,6 +356,7 @@ export const stack = [
   "OpenAI API",
   "Whisper",
   "Notion API",
+  "Klaviyo",
   "Webhooks",
   "Tailwind CSS",
   "Framer Motion",
@@ -331,6 +369,29 @@ export const stack = [
   "Figma",
   "Jira",
   "PowerApps",
+];
+
+export const stackGroups: { label: string; tools: string[] }[] = [
+  {
+    label: "Frontend",
+    tools: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "Framer Motion", "Vite"],
+  },
+  {
+    label: "Backend",
+    tools: ["Node.js", "Express", "Prisma", "PostgreSQL", "Webhooks"],
+  },
+  {
+    label: "AI & Automation",
+    tools: ["n8n", "Claude API", "OpenAI API", "Whisper", "Notion API", "Klaviyo"],
+  },
+  {
+    label: "DevOps",
+    tools: ["Docker", "Vercel", "Railway", "Git", "GitHub"],
+  },
+  {
+    label: "Design & PM",
+    tools: ["Figma", "Jira"],
+  },
 ];
 
 

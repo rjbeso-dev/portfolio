@@ -24,7 +24,7 @@ export default function Section({ id, number, title, children, className = "" }:
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="mb-12 flex items-baseline gap-4"
         >
-          <span className="font-mono text-xs text-fg-dim">§ {number}</span>
+          <span className="font-mono text-xs text-fg-dim">{number}</span>
           <span className="h-px flex-1 bg-line" />
           <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-fg-muted">
             {title}

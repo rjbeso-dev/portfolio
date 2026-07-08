@@ -16,10 +16,7 @@ export default function Process() {
         transition={{ duration: 0.7, ease: EASE }}
         className="mb-16 max-w-3xl text-3xl font-medium leading-tight tracking-tight md:text-5xl"
       >
-        I take a messy business problem and turn it into a working product
-        <span className="text-fg-muted">
-          {" "}— using AI as a multiplier, not a substitute for thinking.
-        </span>
+        I take a messy business problem and turn it into a working product. AI is a multiplier, not a substitute for thinking.
       </motion.h3>
 
       <ol className="relative">

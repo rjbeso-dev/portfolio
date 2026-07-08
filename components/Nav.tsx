@@ -81,7 +81,7 @@ export default function Nav() {
         <div className="flex items-center gap-2">
           <a
             href="#contact"
-            className="group flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-sm text-fg-muted transition-all hover:border-accent hover:text-accent"
+            className="group inline-flex items-center gap-2 text-sm text-fg-muted transition-colors hover:text-accent"
           >
             <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
