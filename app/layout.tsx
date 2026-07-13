@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { profile } from "@/lib/data";
 
 const sans = Geist({ variable: "--font-sans", subsets: ["latin"] });
@@ -23,7 +24,10 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
       </head>
-      <body className="grain antialiased">{children}</body>
+      <body className="grain antialiased">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
