@@ -263,6 +263,72 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "Vera Lane Studio — Project Kickoff",
+    category: "AI Automation",
+    problem:
+      "A boutique hospitality design studio runs the same manual grind on every won project: read the discovery-call notes, set up a project workspace, and hand-write a kickoff brief and meeting agenda. It's slow, inconsistent, and the output quality depends entirely on who did it — and on how good the notes were.",
+    approach:
+      "Built a two-agent n8n pipeline triggered by a 'deal won' webhook. Claude Haiku 4.5 drafts a structured kickoff brief and a separate kickoff agenda from the raw discovery notes; both gather into a single Notion project workspace. Every LLM response passes a defensive parser — code-fence stripping, validated JSON, Notion block-limit handling, and select-option normalisation. Crucially, the brief drafter judges its own confidence: rich notes produce a Complete brief, while notes too thin to work from are flagged Needs Review with the missing information listed. The system does less when it knows less — routing uncertain cases to a human instead of inventing details.",
+    outcome:
+      "One deal in → a project workspace with a tailored brief and a venue-specific agenda out, in about 10 seconds. Tested against three synthetic deals of decreasing note quality: the two rich ones produce Complete briefs with specific agendas; the vague 10-minute intro call correctly flags Needs Review on every run, listing exactly what's missing instead of guessing. Built to mirror an AI-architect assessment for an Australian hospitality-design group — designed on paper, then shipped as working software.",
+    year: "2026",
+    status: "Case study",
+    href: "#",
+    tags: ["n8n", "Claude Haiku 4.5", "Notion API", "JavaScript", "Multi-agent", "Human-in-the-loop", "Defensive design", "Synthetic persona"],
+    screenshots: [
+      {
+        src: "/case-studies/studio-ops/01-workflow-canvas.jpg",
+        alt: "n8n workflow canvas — 8 nodes: Deal Won Webhook, Normalize Fields, Claude Brief Drafter, Defensive Parser, Claude Agenda Drafter, Agenda Parser, and Notion — Create Project",
+        caption: "The pipeline — a 'deal won' webhook through two Claude drafters (brief + agenda), each with a defensive parser, gathering into one Notion project workspace",
+      },
+      {
+        src: "/case-studies/studio-ops/02-normalize-fields.jpg",
+        alt: "Normalize Fields node — the webhook payload (deal id, project, client, venue, budget, discovery notes) mapped to a flat, stable schema in the output panel",
+        caption: "Normalize Fields — the contract layer: the raw webhook is flattened to stable field names every downstream node reads from",
+      },
+      {
+        src: "/case-studies/studio-ops/03-claude-brief-drafter.jpg",
+        alt: "Claude Brief Drafter HTTP node — POST to the Anthropic Messages API with header auth, output showing the structured kickoff brief JSON (summary, objectives, scope) from Haiku 4.5",
+        caption: "Claude Brief Drafter — Haiku 4.5 turns raw discovery notes into a structured brief and judges its own confidence",
+      },
+      {
+        src: "/case-studies/studio-ops/04-defensive-parser.jpg",
+        alt: "Defensive Parser code node — strips code fences, validates JSON, splits the brief into two blocks each capped at 1900 chars for Notion's limit, and reaches back to Normalize Fields for the deal data",
+        caption: "Defensive Parser — code-fence stripping, JSON validation, and block-limit handling so a malformed or oversized response never breaks the write",
+      },
+      {
+        src: "/case-studies/studio-ops/05-agenda-parser.jpg",
+        alt: "Agenda Parser code node — parses the agenda JSON, builds the agenda block, and spreads the brief parser's output through so both drafts reach Notion in one item",
+        caption: "Agenda Parser — gathers the second agent's output alongside the brief, so both land in one project page",
+      },
+      {
+        src: "/case-studies/studio-ops/06-notion-create-project.jpg",
+        alt: "Notion — Create Project node — creates a page in the Projects database with typed properties and the brief plus agenda as page blocks; output shows the created Fable Wine Bar page with its Notion URL",
+        caption: "Notion — Create Project — writes the workspace: typed properties plus the brief and agenda in the page body",
+      },
+      {
+        src: "/case-studies/studio-ops/07-project-page-brief-agenda.jpg",
+        alt: "Fable Wine Bar Notion page — the drafted brief (timeline, stakeholders, open questions) followed by a tailored 75-minute kickoff agenda with suggested attendees, all specific to the wine bar's heritage shopfront, budget, and open items",
+        caption: "The output — Fable Wine Bar's workspace with a tailored brief AND a venue-specific kickoff agenda, both drafted from the discovery notes",
+      },
+      {
+        src: "/case-studies/studio-ops/08-project-page-complete.jpg",
+        alt: "Ovenbird Café Notion page — Brief Quality 'Complete', with a full brief: summary, objectives, and scope highlights drawn from the notes (full strip-out, grease trap and exhaust MEP, exposed-brick investigation)",
+        caption: "Ovenbird Café — a Complete brief drawn entirely from the notes: strip-out, MEP rough-in, exposed-brick investigation",
+      },
+      {
+        src: "/case-studies/studio-ops/09-projects-table-contrast.jpg",
+        alt: "Notion Projects database — three rows with the Brief Quality column showing Needs Review (New restaurant Bondi), Complete (Ovenbird Café), and Complete (Fable Wine Bar)",
+        caption: "The flag discriminates — two rich deals land Complete, the thin one lands Needs Review",
+      },
+      {
+        src: "/case-studies/studio-ops/10-needs-review-flag.jpg",
+        alt: "New restaurant Bondi Notion page — from a vague 10-minute intro call, the system produced a minimal brief and a long Open Questions list of missing information (client name, site address, budget, timeline, decision-makers) instead of inventing a brief",
+        caption: "Needs Review in action — from a 10-minute intro call, the system refuses to invent a brief and lists exactly what's missing for a human to chase",
+      },
+    ],
+  },
+  {
     name: "ouvar® Customer Communications",
     category: "Email Marketing",
     problem:
