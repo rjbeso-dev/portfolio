@@ -88,6 +88,8 @@ export type Project = {
   href?: string;
   tags: string[];
   screenshots?: ProjectScreenshot[];
+  /** Marks the project shown as the large featured card in its track. */
+  featured?: boolean;
 };
 
 export const projects: Project[] = [
@@ -301,6 +303,7 @@ export const projects: Project[] = [
   {
     name: "Vera Lane Studio — Project Kickoff",
     category: "AI Automation",
+    featured: true,
     problem:
       "A boutique hospitality design studio runs the same manual grind on every won project: read the discovery-call notes, set up a project workspace, and hand-write a kickoff brief and meeting agenda. It's slow, inconsistent, and the output quality depends entirely on who did it — and on how good the notes were.",
     approach:
