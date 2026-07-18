@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { MapPin } from "lucide-react";
 import Section from "./Section";
 import { experience } from "@/lib/data";
 
@@ -17,8 +18,14 @@ export default function Experience() {
             transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="group grid gap-6 border-t border-line py-8 transition-colors hover:bg-fg/[0.015] md:grid-cols-[180px,1fr] md:gap-12 md:py-10"
           >
-            <div className="font-mono text-xs uppercase tracking-widest text-fg-dim">
-              {job.period}
+            <div>
+              <div className="font-mono text-xs font-medium uppercase tracking-widest text-fg-muted">
+                {job.period}
+              </div>
+              <div className="mt-2 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-fg-dim">
+                <MapPin className="h-3 w-3 shrink-0" />
+                {job.location}
+              </div>
             </div>
             <div>
               <h3 className="text-2xl font-medium tracking-tight md:text-3xl">
