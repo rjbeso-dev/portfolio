@@ -411,6 +411,13 @@ export const projects: Project[] = [
     status: "Live",
     href: "#",
     tags: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
+    screenshots: [
+      {
+        src: "/case-studies/portfolio-site/01-hero.jpg",
+        alt: "The portfolio hero — a dark landing page with a sticky nav (About, Experience, Process, Case Studies, Stack, Contact) and an Open to work · 2026 status, a large 'Ralph Javen Beso' wordmark, the tagline 'Full-stack & AI automation developer', a short intro about turning messy business problems into working products, and View work / Get in touch buttons",
+        caption: "The landing page — clean, opinionated, and built from scratch in Next.js with a custom theme system and scroll-driven motion.",
+      },
+    ],
   },
 ];
 
