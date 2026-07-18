@@ -17,14 +17,14 @@ export const profile = {
 };
 
 export const about = [
-  "I'm a full-stack developer based in the Philippines, working across React, Node.js, PostgreSQL, and AI-powered automation tooling (n8n + LLM APIs). Currently open to new remote roles.",
-  "I like owning a problem end-to-end — from understanding what people actually need, through data modelling and engineering, to deployment and the small details that make products feel polished. Boring tech that works beats clever tech that doesn't.",
-  "Recently I designed and built a complete project management platform for an Australian logistics company — wearing three hats end-to-end as Product Developer, Project Manager, and Scrum Master. React + Express + Prisma + PostgreSQL, about 390 hours, deployed to production. I'm currently building AI automation workflows that turn manual business processes into self-running pipelines.",
+  "I build AI automation systems: agents and pipelines that take manual, error-prone business processes and turn them into software that runs itself. It's backed by full-stack engineering (React, Node.js, PostgreSQL) and a habit of designing for the cases that break. Based in the Philippines, open to remote roles.",
+  "I like owning a problem end-to-end, from understanding what people actually need through to a system that runs without someone watching it. I care most about the unglamorous parts that decide whether an automation can be trusted: confidence thresholds, defensive parsing, and knowing when the system should stop and ask a human instead of guessing.",
+  "Lately I've been building agents and workflows both in code and in n8n: a freight-exception agent in TypeScript that decides remedies and escalates the calls it shouldn't make on its own, plus inbox-triage and project-kickoff pipelines that draft, route, and flag their own uncertain output. Before that I built a full project management platform for an Australian logistics company, wearing three hats as Product Developer, Project Manager, and Scrum Master, deployed to production in about 390 hours. Full-stack is the foundation; automation is where I'm focused now.",
 ];
 
 export const aboutMeta = {
   location: "Philippines · Remote",
-  role: "Full-Stack & AI Automation",
+  role: "AI Automation & Full-Stack",
   status: "Open to work",
 };
 
@@ -32,6 +32,7 @@ export type Experience = {
   company: string;
   role: string;
   period: string;
+  location: string;
   description: string;
   stack?: string[];
 };
@@ -41,6 +42,7 @@ export const experience: Experience[] = [
     company: "ouvar®",
     role: "Product Developer (also Project Manager & Scrum Master)",
     period: "Feb 2025 — May 2026",
+    location: "Australia · Remote",
     description:
       "Wore three hats end-to-end — ran sprint planning, daily standups, and backlog grooming as Scrum Master; owned roadmap, ticket flow, and stakeholder updates in Jira and Confluence as Project Manager; and translated business requirements into shipped product as Product Developer, owning UI design in Figma and the daily loop with developers and QA. Designed and built a full-stack project management SaaS (React, Node.js, Express, Prisma, PostgreSQL) deployed to production.",
     stack: ["React", "Node.js", "PostgreSQL", "Figma", "Jira", "Confluence", "Scrum"],
@@ -49,6 +51,7 @@ export const experience: Experience[] = [
     company: "ouvar®",
     role: "Platform Support",
     period: "Sept 2024 — Feb 2025",
+    location: "Australia · Remote",
     description:
       "Provided second-line technical support for an internal logistics platform. Diagnosed user issues, reproduced bugs and escalated to engineering with full repro steps, and maintained internal documentation and operational runbooks.",
     stack: ["Jira", "Confluence", "Freshchat"],
@@ -57,6 +60,7 @@ export const experience: Experience[] = [
     company: "ouvar®",
     role: "Onboarding & QA",
     period: "May 2024 — Sept 2024",
+    location: "Australia · Remote",
     description:
       "Onboarded new clients onto the ouvar® logistics platform with structured training and documentation. Performed QA across platform features prior to release; logged and verified defect fixes.",
     stack: ["Jira", "Confluence"],
@@ -65,6 +69,7 @@ export const experience: Experience[] = [
     company: "Hacktiv Colab Inc",
     role: "Microsoft PowerApps Developer",
     period: "Mar 2023 — Sept 2023",
+    location: "Philippines",
     description:
       "Built business applications on the Microsoft Power Platform for enterprise clients. Designed PowerApps interfaces and Power Automate workflows integrated with SharePoint, Dataverse, and Office 365.",
     stack: ["PowerApps", "Power Automate", "SharePoint", "Dataverse"],
