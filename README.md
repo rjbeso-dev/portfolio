@@ -21,20 +21,6 @@ I'm Ralph Javen Beso, a full-stack and AI automation developer. This site is bot
 - **Vercel Analytics**
 - Deployed on **Vercel**
 
-## Run it locally
-
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-```bash
-npm run build   # production build
-npm run start   # serve the production build
-```
-
 ## Project layout
 
 ```
