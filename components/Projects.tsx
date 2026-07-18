@@ -101,23 +101,37 @@ export default function Projects() {
       </p>
 
       {/* ─── Grouped by track — AI automation leads ─── */}
-      <div className="space-y-16">
+      <div className="space-y-20">
         {groups.map((group, gi) => {
           const isLead = gi === 0;
-          const [head, ...rest] = group.items;
-          // In the lead track, the first project is featured full-width; the
-          // rest go in the compact grid. Other tracks are all compact.
-          const gridItems = isLead ? rest : group.items;
+          // In the lead track, the project flagged `featured` (or the first, as
+          // a fallback) gets the full-width card; the rest go in the compact
+          // grid. Other tracks are all compact.
+          const head = isLead
+            ? group.items.find(({ project }) => project.featured) ?? group.items[0]
+            : undefined;
+          const gridItems = isLead
+            ? group.items.filter((item) => item !== head)
+            : group.items;
 
           return (
             <div key={group.label}>
-              <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.22em] text-fg-dim">
-                {group.label}
-              </p>
+              {/* Track header — a labelled divider so the sections read as
+                  distinctly separate bands of work. */}
+              <div className="mb-6 flex items-center gap-3">
+                <span aria-hidden className="h-4 w-[3px] rounded-full bg-accent" />
+                <h3 className="font-mono text-sm font-semibold uppercase tracking-[0.18em] text-fg md:text-[15px]">
+                  {group.label}
+                </h3>
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-fg-dim">
+                  {group.items.length.toString().padStart(2, "0")}
+                </span>
+                <span aria-hidden className="ml-1 h-px flex-1 bg-line" />
+              </div>
 
               {isLead && head && (
                 <motion.div
-                  className={rest.length > 0 ? "mb-3" : ""}
+                  className={gridItems.length > 0 ? "mb-3" : ""}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-10% 0px" }}
