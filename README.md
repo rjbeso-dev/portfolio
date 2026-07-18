@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# rjbeso.com
 
-## Getting Started
+My personal portfolio, live at **[rjbeso.com](https://rjbeso.com)**.
 
-First, run the development server:
+I'm Ralph Javen Beso, a full-stack and AI automation developer. This site is both the portfolio and a working code sample: it's the one project on it whose source you can read directly.
+
+## What's here
+
+- A single-page site with About, Experience, Process, Case Studies, Stack, and Contact sections
+- Case studies grouped into tracks (AI automation leads), each with a screenshot lightbox
+- A custom light and dark theme, scroll-driven motion, and a scroll-spy nav
+- All content is data-driven from [`lib/data.ts`](lib/data.ts), so copy and projects live in one place rather than being buried in components
+
+## Stack
+
+- **Next.js 16** (App Router, Turbopack) + **React 19**
+- **TypeScript**
+- **Tailwind CSS v4**
+- **Framer Motion** for animation
+- **lucide-react** for icons
+- **Vercel Analytics**
+- Deployed on **Vercel**
+
+## Run it locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build   # production build
+npm run start   # serve the production build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project layout
 
-## Learn More
+```
+app/          # Next.js App Router entry, layout, and global styles
+components/   # Section components (About, Experience, Projects, Nav, ...)
+lib/data.ts   # All site content: bio, experience, projects, case studies
+public/       # Images, profile photo, case-study screenshots, CV
+```
 
-To learn more about Next.js, take a look at the following resources:
+To change what the site says, start in [`lib/data.ts`](lib/data.ts). The components render whatever is there.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploying
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Every push to `main` deploys to production on Vercel. A production deploy can also be triggered locally with `vercel --prod`.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by Ralph Javen Beso · [rjbeso.com](https://rjbeso.com) · [github.com/rjbeso-dev](https://github.com/rjbeso-dev)
