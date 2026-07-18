@@ -26,7 +26,7 @@ export default function Section({ id, number, title, children, className = "" }:
         >
           <span className="font-mono text-xs text-fg-dim">{number}</span>
           <span className="h-px flex-1 bg-line" />
-          <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-fg-muted">
+          <h2 className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-fg md:text-base">
             {title}
           </h2>
         </motion.div>
