@@ -21,21 +21,6 @@ I'm Ralph Javen Beso, a full-stack and AI automation developer. This site is bot
 - **Vercel Analytics**
 - Deployed on **Vercel**
 
-## Project layout
-
-```
-app/          # Next.js App Router entry, layout, and global styles
-components/   # Section components (About, Experience, Projects, Nav, ...)
-lib/data.ts   # All site content: bio, experience, projects, case studies
-public/       # Images, profile photo, case-study screenshots, CV
-```
-
-To change what the site says, start in [`lib/data.ts`](lib/data.ts). The components render whatever is there.
-
-## Deploying
-
-Every push to `main` deploys to production on Vercel. A production deploy can also be triggered locally with `vercel --prod`.
-
 ---
 
 Built by Ralph Javen Beso · [rjbeso.com](https://rjbeso.com) · [github.com/rjbeso-dev](https://github.com/rjbeso-dev)
