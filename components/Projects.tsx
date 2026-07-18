@@ -147,7 +147,7 @@ export default function Projects() {
               )}
 
               {gridItems.length > 0 && (
-                <ul className="grid gap-3 sm:grid-cols-2">
+                <ul className="flex flex-col gap-3">
                   {gridItems.map(({ project, index }, i) => (
                     <motion.li
                       key={project.name}
@@ -465,9 +465,10 @@ function FullCard({
 }
 
 /* ──────────────────────────────────────────────────────────────────── */
-/*                       COMPACT CARD                                   */
-/*  Used for: projects in the "More work" grid                          */
-/*  Click anywhere → opens FullCard in a modal                          */
+/*                       COMPACT ROW                                    */
+/*  Used for: projects in each track's list                             */
+/*  A wide horizontal row — details on the left, one thumbnail on the   */
+/*  right. Click anywhere → opens FullCard in a modal.                  */
 /* ──────────────────────────────────────────────────────────────────── */
 
 function CompactCard({
@@ -477,78 +478,92 @@ function CompactCard({
   project: Project;
   onClick: () => void;
 }) {
-  const shotCount = p.screenshots?.length ?? 0;
+  const thumb = p.screenshots?.[0];
 
   return (
     <button
       type="button"
       onClick={onClick}
-      className="group relative flex h-full w-full flex-col overflow-hidden rounded-xl border border-line bg-bg-elev/30 p-5 text-left transition-all hover:border-fg/30 hover:bg-bg-elev"
+      className="group relative flex w-full items-stretch gap-5 overflow-hidden rounded-xl border border-line bg-bg-elev/30 p-4 text-left transition-all hover:border-fg/30 hover:bg-bg-elev sm:min-h-[150px] sm:p-5"
     >
       <div
         aria-hidden
         className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-accent/[0.04] opacity-0 blur-2xl transition-opacity group-hover:opacity-100"
       />
 
-      {/* Header */}
-      <div className="relative mb-3 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2 font-mono text-[10px] text-fg-dim">
-          <span>{p.year}</span>
-          <span className="h-px w-4 bg-fg-dim" />
-          <span className="uppercase tracking-[0.18em]">{p.category}</span>
+      {/* Left: details */}
+      <div className="relative flex min-w-0 flex-1 flex-col">
+        {/* Header */}
+        <div className="mb-2 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2 font-mono text-[10px] text-fg-dim">
+            <span>{p.year}</span>
+            <span className="h-px w-4 bg-fg-dim" />
+            <span className="uppercase tracking-[0.18em]">{p.category}</span>
+          </div>
+          {p.status && (
+            <span
+              className={`inline-flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.18em] ${
+                statusStyle[p.status] ?? "text-fg-muted"
+              }`}
+            >
+              {p.status === "Live" ? (
+                <span className="relative flex h-1 w-1">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-75" />
+                  <span className="relative inline-flex h-1 w-1 rounded-full bg-current" />
+                </span>
+              ) : (
+                <span className="inline-block h-1 w-1 rounded-full bg-current" />
+              )}
+              {p.status}
+            </span>
+          )}
         </div>
-        {p.status && (
-          <span
-            className={`inline-flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.18em] ${
-              statusStyle[p.status] ?? "text-fg-muted"
-            }`}
-          >
-            {p.status === "Live" ? (
-              <span className="relative flex h-1 w-1">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-75" />
-                <span className="relative inline-flex h-1 w-1 rounded-full bg-current" />
-              </span>
-            ) : (
-              <span className="inline-block h-1 w-1 rounded-full bg-current" />
-            )}
-            {p.status}
-          </span>
-        )}
+
+        {/* Title */}
+        <h3 className="mb-1.5 flex items-center gap-2 text-lg font-medium tracking-tight">
+          <span className="truncate">{p.name}</span>
+          <ArrowUpRight className="h-4 w-4 shrink-0 text-fg-dim transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg" />
+        </h3>
+
+        {/* Outcome as tagline (truncated) */}
+        <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-fg-muted">
+          {p.outcome}
+        </p>
+
+        {/* Tags */}
+        <div className="mt-auto flex flex-wrap items-center gap-2">
+          {p.tags.slice(0, 4).map((t) => (
+            <span
+              key={t}
+              className="rounded-full border border-line px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-fg-muted"
+            >
+              {t}
+            </span>
+          ))}
+          {p.tags.length > 4 && (
+            <span className="font-mono text-[9px] text-fg-dim">
+              +{p.tags.length - 4}
+            </span>
+          )}
+        </div>
       </div>
 
-      {/* Title */}
-      <h3 className="relative mb-2 flex items-center gap-2 text-lg font-medium tracking-tight">
-        <span>{p.name}</span>
-        <ArrowUpRight className="h-4 w-4 shrink-0 text-fg-dim transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg" />
-      </h3>
-
-      {/* Outcome as tagline (truncated) */}
-      <p className="relative mb-4 line-clamp-3 text-sm leading-relaxed text-fg-muted">
-        {p.outcome}
-      </p>
-
-      {/* Bottom row: tags + meta */}
-      <div className="relative mt-auto flex flex-wrap items-center gap-2 border-t border-line/60 pt-4">
-        {p.tags.slice(0, 3).map((t) => (
-          <span
-            key={t}
-            className="rounded-full border border-line px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-fg-muted"
-          >
-            {t}
-          </span>
-        ))}
-        {p.tags.length > 3 && (
-          <span className="font-mono text-[9px] text-fg-dim">
-            +{p.tags.length - 3}
-          </span>
-        )}
-        {shotCount > 0 && (
-          <span className="ml-auto flex items-center gap-1 font-mono text-[9px] uppercase tracking-wider text-fg-dim">
-            <ImageIcon className="h-3 w-3" />
-            {shotCount}
-          </span>
-        )}
-      </div>
+      {/* Right: single thumbnail */}
+      {thumb ? (
+        <div className="relative hidden w-40 shrink-0 self-stretch overflow-hidden rounded-lg border border-line sm:block md:w-52">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={thumb.src}
+            alt={thumb.alt}
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      ) : (
+        <div className="relative hidden w-40 shrink-0 self-stretch place-items-center rounded-lg border border-dashed border-line/70 sm:grid md:w-52">
+          <ImageIcon className="h-5 w-5 text-fg-dim/50" />
+        </div>
+      )}
     </button>
   );
 }
