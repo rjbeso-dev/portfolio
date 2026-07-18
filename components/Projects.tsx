@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, ChevronLeft, ChevronRight, ImageIcon, X } from "lucide-react";
 import Section from "./Section";
-import { projects, type Project, type ProjectScreenshot } from "@/lib/data";
+import { projects, projectTracks, type Project, type ProjectScreenshot } from "@/lib/data";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -23,9 +23,19 @@ export default function Projects() {
   const [lightbox, setLightbox] = useState<LightboxState | null>(null);
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
 
-  // Featured = first project; rest go in the compact grid
-  const featured = projects[0];
-  const others = projects.slice(1);
+  // Group projects into tracks (AI automation leads), keeping each project's
+  // real index in `projects` so the modal opens the right one. The first
+  // project of the first non-empty track gets the featured treatment.
+  const withIndex = projects.map((project, index) => ({ project, index }));
+  const groups = projectTracks
+    .map((track) => ({
+      label: track.label,
+      items: withIndex.filter(({ project }) =>
+        track.categories.includes(project.category),
+      ),
+    }))
+    .filter((g) => g.items.length > 0);
+
   const selectedProject =
     selectedProjectIndex !== null ? projects[selectedProjectIndex] : null;
 
@@ -90,50 +100,60 @@ export default function Projects() {
         Real problems, the approach I took, and the outcome.
       </p>
 
-      {/* ─── Featured project ─── */}
-      <div className="mb-14">
-        <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.22em] text-fg-dim">
-          Featured
-        </p>
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10% 0px" }}
-          transition={{ duration: 0.6, ease: EASE }}
-        >
-          <FullCard
-            project={featured}
-            onScreenshotClick={(index) =>
-              setLightbox({ screenshots: featured.screenshots!, index })
-            }
-          />
-        </motion.div>
-      </div>
+      {/* ─── Grouped by track — AI automation leads ─── */}
+      <div className="space-y-16">
+        {groups.map((group, gi) => {
+          const isLead = gi === 0;
+          const [head, ...rest] = group.items;
+          // In the lead track, the first project is featured full-width; the
+          // rest go in the compact grid. Other tracks are all compact.
+          const gridItems = isLead ? rest : group.items;
 
-      {/* ─── More work — compact grid ─── */}
-      {others.length > 0 && (
-        <div>
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.22em] text-fg-dim">
-            More work
-          </p>
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {others.map((p, i) => (
-              <motion.li
-                key={p.name}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-10% 0px" }}
-                transition={{ duration: 0.5, delay: i * 0.05, ease: EASE }}
-              >
-                <CompactCard
-                  project={p}
-                  onClick={() => setSelectedProjectIndex(i + 1)}
-                />
-              </motion.li>
-            ))}
-          </ul>
-        </div>
-      )}
+          return (
+            <div key={group.label}>
+              <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.22em] text-fg-dim">
+                {group.label}
+              </p>
+
+              {isLead && head && (
+                <motion.div
+                  className={rest.length > 0 ? "mb-3" : ""}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-10% 0px" }}
+                  transition={{ duration: 0.6, ease: EASE }}
+                >
+                  <FullCard
+                    project={head.project}
+                    onScreenshotClick={(index) =>
+                      setLightbox({ screenshots: head.project.screenshots!, index })
+                    }
+                  />
+                </motion.div>
+              )}
+
+              {gridItems.length > 0 && (
+                <ul className="grid gap-3 sm:grid-cols-2">
+                  {gridItems.map(({ project, index }, i) => (
+                    <motion.li
+                      key={project.name}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-10% 0px" }}
+                      transition={{ duration: 0.5, delay: i * 0.05, ease: EASE }}
+                    >
+                      <CompactCard
+                        project={project}
+                        onClick={() => setSelectedProjectIndex(index)}
+                      />
+                    </motion.li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          );
+        })}
+      </div>
 
       {/* ─── Project Modal (opens on compact card click) ─── */}
       <AnimatePresence>

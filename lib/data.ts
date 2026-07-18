@@ -92,6 +92,42 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "Freight Exception Agent",
+    category: "AI Automation",
+    problem:
+      "When a freight delivery goes wrong — delayed, damaged, short-delivered, lost — a human has to read the carrier's notification, work out what actually happened, decide who is at fault, check the customer's contract, choose a remedy, and lodge any claim. It is high-volume, high-judgment work, and it bleeds money in two directions at once: unclaimed carrier credits, and customers who churn because nobody told them. Most 'AI automation' can't touch it, because a fixed trigger-to-prompt chain can't investigate, branch on judgment, or remember what it already did.",
+    approach:
+      "Built a genuine agent in TypeScript on Claude, not a linear pipeline. It runs a real tool loop: twelve tools split into free reads (consignment, customer, SLA, carrier performance, prior actions) and money-touching actions (notify, credit, reship, carrier claim, escalate), and the agent decides which to call and in what order. It separates two independent decisions that most systems conflate — what the customer gets versus whether we claim against the carrier. It persists state in SQLite, so re-processing the same exception reuses the open claim instead of lodging a duplicate. And it knows when not to act: above a dollar threshold, or when the facts are too thin, it escalates to a human with the investigation already done and a recommendation attached. The whole thing is validated by a seven-scenario evaluation harness where each scenario is a deliberate trap: an SLA whose guarantee secretly excludes regional runs, a carrier calling a $41,500 cold-chain total loss a 'minor deviation', a shortage that was actually our own warehouse's fault, a notification too vague to identify.",
+    outcome:
+      "Passes the eval 26 of 26 assertions, seven scenarios clean plus an idempotency test, at roughly $1.50 per full run. Two of the scenarios were written after the agent surfaced the bugs itself during the build: on its first run it caught a late-delivery breach that was not the reported problem, which exposed that the data model only allowed one remedy per exception. It reads carrier notifications as claims to verify rather than truth, correctly overriding a carrier's own 'it's fine' framing on a total loss. A local operations console (Node, server-sent events, no framework) streams the agent's investigation live and renders each decision as a disposition docket. This is the step up from workflow-tool automation to agent engineering: a real loop, real state, real self-evaluation.",
+    year: "2026",
+    status: "Case study",
+    href: "https://github.com/rjbeso-dev/freight-agent",
+    tags: ["AI Agent", "TypeScript", "Claude Opus 4.8", "Tool use", "SQLite", "Eval harness", "Server-sent events", "Agent architecture"],
+    screenshots: [
+      {
+        src: "/case-studies/freight-agent/01-console-overview.jpg",
+        alt: "The freight exceptions-desk console — an industrial dark operations UI with a masthead reading MERIDIAN FREIGHT CO / EXCEPTIONS DESK, a left inbound queue of seven carrier notifications, a central inbound wire showing an Allied Express exception report for consignment CON-88431, and a right disposition panel awaiting a decision",
+        caption: "The operations console — an inbound queue of carrier notifications, the raw wire, and a disposition panel. Built to look like dispatch software, not a demo.",
+      },
+      {
+        src: "/case-studies/freight-agent/02-triage-resolved.jpg",
+        alt: "The console after resolving consignment CON-88431 — the investigation log shows the agent's analysis and its amber action ledger (issue_credit $420, create_reship 1 pallet, open_carrier_claim $9,620), and the disposition docket on the right shows RESOLVED AUTONOMOUSLY, DAMAGED and DELAYED chips, CARRIER fault, a $420 credit and $9,200 reship, and a $9,620 carrier claim",
+        caption: "The compound case, resolved — one notification, two exceptions caught: a reship for the damage AND a $420 credit for a late-delivery breach the carrier never reported, plus the claim lodged. The full trace on the left, the decision on the right.",
+      },
+      {
+        src: "/case-studies/freight-agent/03-escalation.jpg",
+        alt: "The console handling a Followmont cold-chain incident on consignment CON-88712 — the disposition docket shows a red ESCALATED TO HUMAN banner, a $41,500 reship and $41,500 carrier claim marked as recommendations pending human approval, and the log shows the agent recognising a total loss above the $25,000 threshold and calling escalate_to_human",
+        caption: "Knows when not to act — a $41,500 cold-chain total loss the carrier called 'minor' is escalated to a human, above the threshold, with the investigation done and a recommendation attached rather than executed.",
+      },
+      {
+        src: "/case-studies/freight-agent/04-eval-harness.jpg",
+        alt: "Terminal output of the evaluation harness — seven scenarios S1 through S7 all marked PASS with their assertion counts, an idempotency test marked PASS, and a final score of 26 out of 26 assertions, 7 of 7 scenarios fully clean, at about $1.46 per full run on Claude Opus 4.8",
+        caption: "The eval harness — seven traps plus an idempotency test, graded on specific assertions. 26/26. This is how you prove an agent's judgment instead of claiming it.",
+      },
+    ],
+  },
+  {
     name: "Linden — Project Tracker",
     category: "Full-Stack SaaS",
     problem:
@@ -373,6 +409,18 @@ export const projects: Project[] = [
     href: "#",
     tags: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
   },
+];
+
+/**
+ * Case studies are grouped into tracks so the AI automation work leads and is
+ * not overshadowed by the full-stack build. Order here is the order on the page;
+ * the first project of the first track gets the featured treatment. Every
+ * project category must map to exactly one track.
+ */
+export const projectTracks: { label: string; categories: Project["category"][] }[] = [
+  { label: "AI Automation & Agents", categories: ["AI Automation"] },
+  { label: "Full-Stack & SaaS", categories: ["Full-Stack SaaS", "Full-Stack"] },
+  { label: "Design & Brand", categories: ["Email Marketing", "Site"] },
 ];
 
 export type ProcessStep = {
