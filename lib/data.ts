@@ -196,67 +196,18 @@ export const projects: Project[] = [
     ],
   },
   {
-    name: "AI Job Search Assistant",
-    category: "AI Automation",
-    problem:
-      "Manually scrolling through LinkedIn, WeWorkRemotely, RemoteOK, and Hacker News is hours of work to surface a few relevant roles — and most listings are a 30-second skim before moving on. Worse, the same job posted across multiple boards turns into duplicate noise.",
-    approach:
-      "Built a production-grade n8n workflow that aggregates live job listings from 4 RSS sources (WeWorkRemotely, RemoteOK, Jobicy, HN Jobs) in parallel, deduplicates within and across runs by querying my Notion database for already-scored jobs, scores each new role 1–10 against my CV via the Claude API (Haiku 4.5), drafts a personalised cover letter for the top matches, filters by score, and writes each strong match into Notion with status, link, and reasoning. Throttled with HTTP batching to respect API rate limits.",
-    outcome:
-      "Multi-source, self-deduplicating pipeline that runs every morning. About 250 jobs aggregated and filtered down to 10 new ones scored per run at roughly $0.015 per run. Notion-backed memory means the system never re-scores the same job twice — costs stay flat as the database grows. Turns 2+ hours of daily job-hunting noise into a 5-minute morning review of pre-vetted, highest-fit roles with cover letters already drafted.",
-    year: "2026",
-    status: "Case study",
-    href: "#",
-    tags: [
-      "n8n",
-      "Claude API",
-      "Notion API",
-      "RSS",
-      "JavaScript",
-      "Rate limiting",
-      "Multi-source dedup",
-    ],
-    screenshots: [
-      {
-        src: "/case-studies/job-search-assistant/01-workflow-canvas.jpg",
-        alt: "n8n workflow canvas showing 4 parallel RSS sources merging into a dedup + Claude scoring pipeline that writes filtered matches to Notion",
-        caption: "Production architecture: 4 parallel RSS feeds → dedup against Notion → Claude scores 10 new jobs → top matches stored",
-      },
-      {
-        src: "/case-studies/job-search-assistant/02-claude-api.jpg",
-        alt: "HTTP Request node configuration calling Claude API with the system prompt and three Claude responses returned",
-        caption: "Claude API call (Haiku 4.5) — system prompt embeds the CV; per-job scoring returns structured JSON",
-      },
-      {
-        src: "/case-studies/job-search-assistant/03-scored-output.jpg",
-        alt: "Parsed scoring output table showing three jobs with scores 2, 7, and 3, each with reasoning and cover letter",
-        caption: "Parse node output — Claude's JSON extracted into structured fields with score, reasoning, and cover letter",
-      },
-      {
-        src: "/case-studies/job-search-assistant/04-notion-database.jpg",
-        alt: "Notion database view showing scored jobs with company, score, reasoning, cover letter, and status columns",
-        caption: "Notion 'Scored Jobs' database — every score-7+ match logged automatically with status 'To Apply'",
-      },
-      {
-        src: "/case-studies/job-search-assistant/05-notion-detail.jpg",
-        alt: "Notion page for a single scored job showing full cover letter, reasoning, score, and status",
-        caption: "Per-job detail view in Notion — ready-to-send cover letter generated against the CV",
-      },
-    ],
-  },
-  {
-    name: "Briarworks Operator OS",
+    name: "AI Inbox Triage & Drafting",
     category: "AI Automation",
     problem:
       "Founders spend 90+ minutes a day triaging email that a multi-LLM pipeline could categorise, route, and pre-draft — but most automation tools focus on the tool first and the work last. Real inbox triage needs confidence-aware routing, voice-aware drafting, and defensive design at every layer; without those, the system silently misclassifies and humans stop trusting the output.",
     approach:
-      "Designed Workflow 1 of a synthetic-persona operator system around Sarah Chen, a fictional Series A B2B SaaS founder. A 9-node n8n pipeline accepts inbound email JSON via webhook, Claude Haiku 4.5 classifies each into 5 categories with confidence + reasoning, a Switch routes Respond Needed items through a second Claude call to generate three reply variations (formal, casual, direct), and a final Code + Notion path writes structured rows to a Notion database. Five layers of defensive design: HTTP rate-limit batching at 1500ms, markdown code-fence stripping on every LLM response, confidence-threshold fallback to FYI on uncertain categorisations, cross-branch data preservation via n8n pairing (so the Drafter's response doesn't lose email context), and Notion select-option normalisation before writes. Synthetic test fixtures with ground-truth labels validate accuracy on every run.",
+      "Designed the inbox-triage workflow of an operator system for a startup founder's inbox. A 9-node n8n pipeline accepts inbound email JSON via webhook, Claude Haiku 4.5 classifies each into 5 categories with confidence + reasoning, a Switch routes Respond Needed items through a second Claude call to generate three reply variations (formal, casual, direct), and a final Code + Notion path writes structured rows to a Notion database. Five layers of defensive design: HTTP rate-limit batching at 1500ms, markdown code-fence stripping on every LLM response, confidence-threshold fallback to FYI on uncertain categorisations, cross-branch data preservation via n8n pairing (so the Drafter's response doesn't lose email context), and Notion select-option normalisation before writes. Synthetic test fixtures with ground-truth labels validate accuracy on every run.",
     outcome:
       "20 emails processed end-to-end in about 50 seconds at roughly $0.015 per run. Three sendable reply variations per Respond Needed item, in the founder's voice. Workflow 2 (Meeting Processor) also running — one Claude extraction call fans out to Decisions Log and Action Items databases in parallel, and grew out of my earlier Whisper-based meeting-notes pipeline (audio → transcription → structured extraction). Nudge Bot and Weekly Brief in progress. Eight distinct n8n quirks debugged from production-style errors during the build, each captured in the case study as a worked example of senior-engineer-style diagnosis.",
     year: "2026",
     status: "Case study",
     href: "#",
-    tags: ["n8n", "Claude Haiku 4.5", "Notion API", "JavaScript", "Multi-LLM orchestration", "Defensive design", "Synthetic persona"],
+    tags: ["n8n", "Claude Haiku 4.5", "Notion API", "JavaScript", "Multi-LLM orchestration", "Defensive design"],
     screenshots: [
       {
         src: "/case-studies/briarworks-operator-os/01-w1-workflow-canvas.jpg",
@@ -306,7 +257,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    name: "Vera Lane Studio — Project Kickoff",
+    name: "AI Project Kickoff Automation",
     category: "AI Automation",
     featured: true,
     problem:
@@ -318,7 +269,7 @@ export const projects: Project[] = [
     year: "2026",
     status: "Case study",
     href: "#",
-    tags: ["n8n", "Claude Haiku 4.5", "Notion API", "JavaScript", "Multi-agent", "Human-in-the-loop", "Defensive design", "Synthetic persona"],
+    tags: ["n8n", "Claude Haiku 4.5", "Notion API", "JavaScript", "Multi-agent", "Human-in-the-loop", "Defensive design"],
     screenshots: [
       {
         src: "/case-studies/studio-ops/01-workflow-canvas.jpg",
