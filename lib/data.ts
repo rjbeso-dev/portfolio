@@ -19,7 +19,7 @@ export const profile = {
 export const about = [
   "I build AI automation systems: agents and pipelines that take manual, error-prone business processes and turn them into software that runs itself. It's backed by full-stack engineering (React, Node.js, PostgreSQL) and a habit of designing for the cases that break. Based in the Philippines, open to remote roles.",
   "I like owning a problem end-to-end, from understanding what people actually need through to a system that runs without someone watching it. I care most about the unglamorous parts that decide whether an automation can be trusted: confidence thresholds, defensive parsing, and knowing when the system should stop and ask a human instead of guessing.",
-  "Lately I've been building agents and workflows both in code and in n8n: a freight-exception agent in TypeScript that decides remedies and escalates the calls it shouldn't make on its own, plus inbox-triage and project-kickoff pipelines that draft, route, and flag their own uncertain output. Before that I built a full project management platform for an Australian logistics company, wearing three hats as Product Developer, Project Manager, and Scrum Master, deployed to production in about 390 hours. Full-stack is the foundation; automation is where I'm focused now.",
+  "Lately I've been building agents and workflows both in code and in n8n: a freight-exception agent in TypeScript that decides remedies and escalates the calls it shouldn't make on its own, plus inbox-triage and project-kickoff pipelines that draft, route, and flag their own uncertain output. Before that I built a full project management platform for an Australian logistics company, wearing three hats as Product Developer, Project Manager, and Scrum Master, and deployed it to production. Full-stack is the foundation; automation is where I'm focused now.",
 ];
 
 export const aboutMeta = {
@@ -142,7 +142,7 @@ export const projects: Project[] = [
     approach:
       "Designed a multi-tenant Postgres schema across ~18 entities with company → segment → brand isolation, then built a React + Express + Prisma SaaS from scratch. Implemented role-based access control with permission flags, Gantt scheduling with task dependencies, time logging, comments with @mentions, a notification system, and parallel Kanban / Gantt / List / Calendar views. Used AI tooling as a build multiplier, owning every architectural decision and reviewing every line.",
     outcome:
-      "Shipped a production-ready SaaS replacement for the planned ClickUp rollout in about 390 hours as sole developer. 92 UAT cases documented. Deployed to production on Vercel + Railway with separate staging environments. Case-study screenshots use anonymized branding (Linden) out of respect for the original client.",
+      "Shipped a production-ready SaaS replacement for the planned ClickUp rollout as sole developer, owning every layer from the Postgres schema to deployment. Validated against 92 documented UAT cases. Deployed to production on Vercel + Railway with separate staging environments. Case-study screenshots use anonymized branding (Linden) out of respect for the original client.",
     year: "2026",
     status: "Case study",
     href: "#",
