@@ -196,7 +196,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    name: "AI Inbox Triage & Drafting",
+    name: "AI Inbox & Meeting Automation",
     category: "AI Automation",
     problem:
       "Founders spend 90+ minutes a day triaging email that a multi-LLM pipeline could categorise, route, and pre-draft — but most automation tools focus on the tool first and the work last. Real inbox triage needs confidence-aware routing, voice-aware drafting, and defensive design at every layer; without those, the system silently misclassifies and humans stop trusting the output.",
