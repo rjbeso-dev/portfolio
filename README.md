@@ -2,7 +2,7 @@
 
 My personal portfolio, live at **[rjbeso.com](https://rjbeso.com)**.
 
-I'm Ralph Javen Beso, a full-stack and AI automation developer. This site is both the portfolio and a working code sample: it's the one project on it whose source you can read directly.
+I'm Ralph Javen Beso, an AI Product Specialist. This site is both the portfolio and a working code sample: it's the one project on it whose source you can read directly.
 
 ## What's here
 

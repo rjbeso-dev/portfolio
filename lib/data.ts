@@ -3,10 +3,10 @@
 
 export const profile = {
   name: "Ralph Javen Beso",
-  role: "Full-Stack & AI Automation Developer",
+  role: "AI Product Specialist",
   // One short line for the hero subtitle
   tagline:
-    "I take messy business problems and turn them into working products — full-stack apps and AI-powered automations. Open to remote roles.",
+    "I turn messy business problems into AI products and automations that run themselves, backed by real full-stack engineering. Open to remote roles.",
   location: "Open to work · 2026",
   email: "rjbeso@gmail.com",
   socials: {
@@ -24,7 +24,7 @@ export const about = [
 
 export const aboutMeta = {
   location: "Philippines · Remote",
-  role: "AI Automation & Full-Stack",
+  role: "AI Product Specialist",
   status: "Open to work",
 };
 
@@ -324,6 +324,55 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "AI Job Search Assistant",
+    category: "AI Automation",
+    problem:
+      "Manually scrolling through LinkedIn, WeWorkRemotely, RemoteOK, and Hacker News is hours of work to surface a few relevant roles — and most listings are a 30-second skim before moving on. Worse, the same job posted across multiple boards turns into duplicate noise.",
+    approach:
+      "Built a production-grade n8n workflow that aggregates live job listings from 4 RSS sources (WeWorkRemotely, RemoteOK, Jobicy, HN Jobs) in parallel, deduplicates within and across runs by querying my Notion database for already-scored jobs, scores each new role 1–10 against my CV via the Claude API (Haiku 4.5), drafts a personalised cover letter for the top matches, filters by score, and writes each strong match into Notion with status, link, and reasoning. Throttled with HTTP batching to respect API rate limits.",
+    outcome:
+      "Multi-source, self-deduplicating pipeline that runs every morning. About 250 jobs aggregated and filtered down to 10 new ones scored per run at roughly $0.015 per run. Notion-backed memory means the system never re-scores the same job twice — costs stay flat as the database grows. Turns 2+ hours of daily job-hunting noise into a 5-minute morning review of pre-vetted, highest-fit roles with cover letters already drafted.",
+    year: "2026",
+    status: "Case study",
+    href: "#",
+    tags: [
+      "n8n",
+      "Claude API",
+      "Notion API",
+      "RSS",
+      "JavaScript",
+      "Rate limiting",
+      "Multi-source dedup",
+    ],
+    screenshots: [
+      {
+        src: "/case-studies/job-search-assistant/01-workflow-canvas.jpg",
+        alt: "n8n workflow canvas showing 4 parallel RSS sources merging into a dedup + Claude scoring pipeline that writes filtered matches to Notion",
+        caption: "Production architecture: 4 parallel RSS feeds → dedup against Notion → Claude scores 10 new jobs → top matches stored",
+      },
+      {
+        src: "/case-studies/job-search-assistant/02-claude-api.jpg",
+        alt: "HTTP Request node configuration calling Claude API with the system prompt and three Claude responses returned",
+        caption: "Claude API call (Haiku 4.5) — system prompt embeds the CV; per-job scoring returns structured JSON",
+      },
+      {
+        src: "/case-studies/job-search-assistant/03-scored-output.jpg",
+        alt: "Parsed scoring output table showing three jobs with scores 2, 7, and 3, each with reasoning and cover letter",
+        caption: "Parse node output — Claude's JSON extracted into structured fields with score, reasoning, and cover letter",
+      },
+      {
+        src: "/case-studies/job-search-assistant/04-notion-database.jpg",
+        alt: "Notion database view showing scored jobs with company, score, reasoning, cover letter, and status columns",
+        caption: "Notion 'Scored Jobs' database — every score-7+ match logged automatically with status 'To Apply'",
+      },
+      {
+        src: "/case-studies/job-search-assistant/05-notion-detail.jpg",
+        alt: "Notion page for a single scored job showing full cover letter, reasoning, score, and status",
+        caption: "Per-job detail view in Notion — ready-to-send cover letter generated against the CV",
+      },
+    ],
+  },
+  {
     name: "ouvar® Customer Communications",
     category: "Email Marketing",
     problem:
@@ -370,7 +419,7 @@ export const projects: Project[] = [
     screenshots: [
       {
         src: "/case-studies/portfolio-site/01-hero.jpg",
-        alt: "The portfolio hero — a dark landing page with a sticky nav (About, Experience, Process, Case Studies, Stack, Contact) and an Open to work · 2026 status, a large 'Ralph Javen Beso' wordmark, the tagline 'Full-stack & AI automation developer', a short intro about turning messy business problems into working products, and View work / Get in touch buttons",
+        alt: "The portfolio hero — a dark landing page with a sticky nav (About, Experience, Process, Case Studies, Stack, Contact) and an Open to work · 2026 status, a large 'Ralph Javen Beso' wordmark, the tagline 'AI Product Specialist', a short intro about turning messy business problems into working products, and View work / Get in touch buttons",
         caption: "The landing page — clean, opinionated, and built from scratch in Next.js with a custom theme system and scroll-driven motion.",
       },
     ],
