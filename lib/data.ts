@@ -251,14 +251,39 @@ export const projects: Project[] = [
         caption: "The home dashboard — continue reading, verse of the day, reading stats, and quick browse, in a calm editorial theme.",
       },
       {
-        src: "/case-studies/bible-buddy/03-reading.jpg",
-        alt: "Bible Buddy reading view — John 3 rendered with a large drop cap, elegant serif typography, verse numbers, a translation selector (World English Bible Modern), Parallel and Study toggles, and a 'Select a verse to study it' study panel on the right",
-        caption: "The reading view — distraction-free chapter reading with editorial typography, a translation switcher, and an inline study panel.",
-      },
-      {
         src: "/case-studies/bible-buddy/02-overview.jpg",
         alt: "Bible Buddy book overview for John — author, date written, where, genre, audience, themes, purpose, key themes, a structure outline (chapters 1 to 12, 13 to 17, 18 to 21), and a key verse (John 3:16), shown as a study card before the chapter text",
         caption: "The book overview — author, date, themes, structure, and a key verse for each book, so reading starts with context.",
+      },
+      {
+        src: "/case-studies/bible-buddy/03-reading.jpg",
+        alt: "Bible Buddy reading view — John 3 with a large drop cap, elegant serif typography, verse numbers, a translation selector, and an inline study panel prompting to select a verse",
+        caption: "The reading view — distraction-free chapter reading with editorial typography and an inline study panel.",
+      },
+      {
+        src: "/case-studies/bible-buddy/04-psalm23.jpg",
+        alt: "Bible Buddy reading Psalm 23 — poetic line breaks preserved, a drop cap Y, and clean verse numbering in the World English Bible",
+        caption: "Poetry reads as poetry — Psalm 23 with line breaks preserved, not flattened into a paragraph.",
+      },
+      {
+        src: "/case-studies/bible-buddy/07-parallel.jpg",
+        alt: "Bible Buddy parallel view — John 3 shown in two columns, World English Bible (Modern) beside King James Version (Classic), verse-aligned for comparison",
+        caption: "Parallel translations — compare two versions side by side, verse aligned.",
+      },
+      {
+        src: "/case-studies/bible-buddy/08-study.jpg",
+        alt: "Bible Buddy study panel open on John 3:2 — highlight colour swatches, an Add note action, a parallel translation of the verse, and a cross-references list (John 5:36, Acts 10:38, and more)",
+        caption: "The study panel — per-verse highlights, private notes, a parallel rendering, and cross-references, all inline.",
+      },
+      {
+        src: "/case-studies/bible-buddy/06-typography.jpg",
+        alt: "Bible Buddy display settings — a Typeface picker (Serif, Sans, Comfort, Mono) and a text-size control, with the labeled left navigation (Home, Read, Search, Notes, Sound, Display, Theme, Sign in) expanded",
+        caption: "Reader controls — choose the typeface and text size; the whole app is built for comfortable reading.",
+      },
+      {
+        src: "/case-studies/bible-buddy/09-light.jpg",
+        alt: "Bible Buddy in light mode — a warm paper theme showing John 3 in parallel translations, proving a full light and dark theming system",
+        caption: "Light mode — a warm paper theme, the same reading experience with full theme parity.",
       },
     ],
   },
