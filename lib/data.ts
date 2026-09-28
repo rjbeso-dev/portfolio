@@ -196,6 +196,63 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "Otoke? — Live Audience Q&A",
+    category: "Full-Stack SaaS",
+    problem:
+      "Paid audience tools like Mentimeter and Slido cap how much a person can write (often 200 characters) and charge per seat. For live sessions, workshops, and church events, the need was different: let people answer at length from their phones, keep every response private to the host, and let the host decide exactly which answers appear on the big screen. No existing tool did all three without a subscription per presenter.",
+    approach:
+      "Built a full-stack, multi-room web app on Next.js (App Router) and Supabase Postgres. Every database read and write goes through server API routes using the service role key with row-level security on, so participants physically cannot read anyone else's answers, only the host can. Each room is self-managed: the creator sets a room name and password, stored as a salted scrypt hash, and proves it with a per-room httpOnly cookie, so there is no shared global password. A room holds unlimited questions that participants navigate at their own pace; the host watches responses come in live and reveals one or many answers at once to a separate presentation screen that groups them by question. Participants join by code or QR. Along the way I diagnosed and fixed a subtle Next.js data-cache bug that was serving stale reads to the projector, by forcing uncached queries.",
+    outcome:
+      "A live product with three distinct surfaces (participant, host console, presentation screen), verified end to end: per-room passwords enforce access, wrong passwords are rejected, and revealed answers appear on the screen within about two seconds. Deployed on Vercel with a private GitHub repo and continuous deploys. Now being extended toward a subscription and licensing model with owner accounts and billing.",
+    year: "2026",
+    status: "Live",
+    href: "https://otoke.vercel.app",
+    tags: ["Next.js", "React", "Supabase", "PostgreSQL", "API routes", "scrypt auth", "Multi-tenant", "QR", "Vercel"],
+    screenshots: [
+      {
+        src: "/case-studies/otoke/01-landing.jpg",
+        alt: "Otoke landing page — an orange question-bubble logo and wordmark, a 'Live audience Q&A' eyebrow, the headline 'Ask the room. You decide what goes on the screen.', a join-by-code card, and colour-coded 'how it works' steps",
+        caption: "The landing page — join by code, or open the host console. Colour-coded steps and a clear value line.",
+      },
+      {
+        src: "/case-studies/otoke/02-presentation.jpg",
+        alt: "Otoke presentation screen in dark mode — the question 'What should we improve next quarter?' in mint at the top, then three revealed answers stacked with dividers, each with the responder's name",
+        caption: "The presentation screen — the host reveals one or many answers at once, shown once under the question with clean separation for the projector.",
+      },
+      {
+        src: "/case-studies/otoke/03-participant.jpg",
+        alt: "Otoke participant view on a phone — room name 'Team Retro', question 1 of 1, an answer box with no character limit, an optional name field, and a Share answer button",
+        caption: "The participant view — answer from your phone with no character limit; you never see anyone else's answers.",
+      },
+      {
+        src: "/case-studies/otoke/04-host.jpg",
+        alt: "Otoke host console login — the logo, 'Host console' label, and a create-a-room form with room name and password, plus an open-existing-room form with code and password",
+        caption: "The host console — create a room with its own name and password, or open an existing one. Each room is independently secured.",
+      },
+    ],
+  },
+  {
+    name: "Bible Buddy — Reading & Study App",
+    category: "Full-Stack",
+    problem:
+      "Most Bible apps are cluttered, ad-heavy, or push you to create an account before you can read. The goal was a calm, editorial reading and study experience: the full canon, clean typography, private notes and highlights, and no sign-up, with a person's markups staying on their own device.",
+    approach:
+      "Built a Next.js web app covering the 66-book Protestant canon with grouped English translations (including optional ESV and NLT pulled through server-side API keys so the keys never reach the browser). Readers can compare two translations side by side, highlight verses in five theme-aware colours, and add personal notes. Everything a reader creates is stored privately in their own browser, no accounts and no data leaving the device. A custom light and dark editorial theme carries the whole app, with a home dashboard that surfaces continue-reading, a verse of the day, and simple reading stats.",
+    outcome:
+      "A live, self-contained study app at biblebuddy.rjbeso.com: an editorial home dashboard, distraction-free chapter reading, side-by-side translation compare, and private highlights and notes that persist locally. Deployed on Vercel with a custom domain.",
+    year: "2026",
+    status: "Live",
+    href: "https://biblebuddy.rjbeso.com",
+    tags: ["Next.js", "React", "TypeScript", "Local-first", "Server-side API keys", "Editorial UI", "Vercel"],
+    screenshots: [
+      {
+        src: "/case-studies/bible-buddy/01-home.jpg",
+        alt: "Bible Buddy home dashboard in dark mode — a 'Good morning' greeting, a Continue Reading card for John 1 with a Resume button, a Verse of the Day (1 Corinthians 13:4), reading stats (chapters read, notes, highlights), Jump back in, recent notes and highlights, and a Browse the Bible selector",
+        caption: "The home dashboard — continue reading, verse of the day, reading stats, and quick browse, in a calm editorial theme.",
+      },
+    ],
+  },
+  {
     name: "AI Inbox & Meeting Automation",
     category: "AI Automation",
     problem:
