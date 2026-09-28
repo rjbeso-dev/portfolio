@@ -250,6 +250,16 @@ export const projects: Project[] = [
         alt: "Bible Buddy home dashboard in dark mode — a 'Good morning' greeting, a Continue Reading card for John 1 with a Resume button, a Verse of the Day (1 Corinthians 13:4), reading stats (chapters read, notes, highlights), Jump back in, recent notes and highlights, and a Browse the Bible selector",
         caption: "The home dashboard — continue reading, verse of the day, reading stats, and quick browse, in a calm editorial theme.",
       },
+      {
+        src: "/case-studies/bible-buddy/03-reading.jpg",
+        alt: "Bible Buddy reading view — John 3 rendered with a large drop cap, elegant serif typography, verse numbers, a translation selector (World English Bible Modern), Parallel and Study toggles, and a 'Select a verse to study it' study panel on the right",
+        caption: "The reading view — distraction-free chapter reading with editorial typography, a translation switcher, and an inline study panel.",
+      },
+      {
+        src: "/case-studies/bible-buddy/02-overview.jpg",
+        alt: "Bible Buddy book overview for John — author, date written, where, genre, audience, themes, purpose, key themes, a structure outline (chapters 1 to 12, 13 to 17, 18 to 21), and a key verse (John 3:16), shown as a study card before the chapter text",
+        caption: "The book overview — author, date, themes, structure, and a key verse for each book, so reading starts with context.",
+      },
     ],
   },
   {
