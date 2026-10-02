@@ -39,6 +39,15 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
+    company: "The Professional Builder",
+    role: "Operations Tech Specialist (Tech DevOps)",
+    period: "Sept 2026 — Present",
+    location: "New Zealand · Remote",
+    description:
+      "Own internal tech operations for a New Zealand coaching company's global team, building tools and automations that replace manual, error-prone processes. Authored the company AI Acceptable Use Policy and a P1–P5 support SLA, administer core SaaS (Zoom, Circle, Vimeo), and shipped internal apps including a live audience-response web app (Next.js + Supabase) that replaced Mentimeter and Slido, plus data-migration and reporting scripts against vendor APIs.",
+    stack: ["Next.js", "Supabase", "n8n", "LLM APIs", "Systems Admin"],
+  },
+  {
     company: "ouvar®",
     role: "Product Developer (also Project Manager & Scrum Master)",
     period: "Feb 2025 — May 2026",
