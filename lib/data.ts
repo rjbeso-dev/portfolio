@@ -220,23 +220,33 @@ export const projects: Project[] = [
     screenshots: [
       {
         src: "/case-studies/otoke/01-landing.jpg",
-        alt: "Otoke landing page — an orange question-bubble logo and wordmark, a 'Live audience Q&A' eyebrow, the headline 'Ask the room. You decide what goes on the screen.', a join-by-code card, and colour-coded 'how it works' steps",
-        caption: "The landing page — join by code, or open the host console. Colour-coded steps and a clear value line.",
-      },
-      {
-        src: "/case-studies/otoke/02-presentation.jpg",
-        alt: "Otoke presentation screen in dark mode — the question 'What should we improve next quarter?' in mint at the top, then three revealed answers stacked with dividers, each with the responder's name",
-        caption: "The presentation screen — the host reveals one or many answers at once, shown once under the question with clean separation for the projector.",
-      },
-      {
-        src: "/case-studies/otoke/03-participant.jpg",
-        alt: "Otoke participant view on a phone — room name 'Team Retro', question 1 of 1, an answer box with no character limit, an optional name field, and a Share answer button",
-        caption: "The participant view — answer from your phone with no character limit; you never see anyone else's answers.",
+        alt: "Otoke marketing landing page in dark mode, with a green hero reading 'Ask the room. You decide what goes on the screen.', a top nav of Product, How it works, Features and Pricing, and Log in and Create a room buttons",
+        caption: "The landing page, a full marketing site with the core promise: ask the room, you decide what goes on the screen.",
       },
       {
         src: "/case-studies/otoke/04-host.jpg",
-        alt: "Otoke host console login — the logo, 'Host console' label, and a create-a-room form with room name and password, plus an open-existing-room form with code and password",
-        caption: "The host console — create a room with its own name and password, or open an existing one. Each room is independently secured.",
+        alt: "Otoke host console showing room 'Team Retro' with code MEAR8, a join QR code and link, and three questions (an open-ended question, a Live poll with four options, and a Quiz with a 20s timer and the correct answer marked), plus a Responses panel below",
+        caption: "The host console, one room with three question types (open-ended, live poll, quiz), a join QR, and per-answer reveal controls.",
+      },
+      {
+        src: "/case-studies/otoke/02-presentation.jpg",
+        alt: "Otoke presentation screen in dark mode, the question 'What should we keep doing as a team next quarter?' in mint with three revealed answers from Priya, Marcus and Lena, each separated by a divider",
+        caption: "The presentation screen, the host reveals open-ended answers one or many at a time for the projector.",
+      },
+      {
+        src: "/case-studies/otoke/05-poll.jpg",
+        alt: "Otoke live poll results on the presentation screen, the question 'Which should we prioritize first?' with four horizontal bars: Faster onboarding 40 percent, Better documentation 30 percent, More automation 20 percent, Team training 10 percent, over 10 answers",
+        caption: "Live poll results, real-time bar charts with the leading option highlighted, shown to the room on the big screen.",
+      },
+      {
+        src: "/case-studies/otoke/06-leaderboard.jpg",
+        alt: "Otoke quiz leaderboard on the presentation screen, a ranked top five (Priya 808, Marcus 773, Lena 730, Sam 647, Noa 579) with first place highlighted in mint",
+        caption: "The quiz leaderboard, answers are scored by speed and correctness and ranked live for the room.",
+      },
+      {
+        src: "/case-studies/otoke/03-participant.jpg",
+        alt: "Otoke participant view on a phone, room 'Team Retro', question 1 of 3, an answer box with no character limit, an optional name field, a Share answer button, and previous and next navigation",
+        caption: "The participant view, answer from your phone; only the host sees responses, never the rest of the room.",
       },
     ],
   },
