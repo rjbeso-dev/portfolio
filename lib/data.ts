@@ -44,8 +44,8 @@ export const experience: Experience[] = [
     period: "Sept 2026 — Present",
     location: "New Zealand · Remote",
     description:
-      "Own internal tech operations for a New Zealand coaching company's global team, building tools and automations that replace manual, error-prone processes. Authored the company AI Acceptable Use Policy and a P1–P5 support SLA, administer core SaaS (Zoom, Circle, Vimeo), and build internal data-migration, reporting, and automation scripts against vendor APIs.",
-    stack: ["Next.js", "Supabase", "n8n", "LLM APIs", "Systems Admin"],
+      "Own internal tech operations for a New Zealand coaching company's global team, building tools and automations that replace manual, error-prone processes. Authored the company AI Acceptable Use Policy and a P1–P5 support SLA, administer core SaaS (Zoom, Circle, Vimeo), audit and fix HubSpot CRM automations, and build internal data-migration, reporting, and automation scripts against vendor APIs.",
+    stack: ["Next.js", "Supabase", "n8n", "HubSpot", "LLM APIs", "Systems Admin"],
   },
   {
     company: "ouvar®",
