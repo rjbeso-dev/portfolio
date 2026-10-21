@@ -251,6 +251,52 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "PASA: Student Marketplace App",
+    category: "Full-Stack",
+    problem:
+      "College students in Santa Rosa, Laguna find tutors and sell used books and calculators through Facebook groups and group chats, with no way to tell who is credible and no protection once money changes hands. My group's feasibility study needed more than mockups: a working app that proved a marketplace just for students could run safely and earn a commission.",
+    approach:
+      "Built PASA from one codebase in Expo (React Native) and Supabase, shipped as an Android app, an installable web app for iPhone, and a web version on Vercel. Students sign up with their school and verify with a school ID or COR, and tutors are approved with their CV. Students book online tutoring sessions over Zoom, Meet or Teams, and buy and sell academic items, while PASA holds the payment in a wallet and only releases it when the session is done or the buyer confirms they got the item. The money rules live in Postgres, not just the app: guard triggers on orders, bookings and payments stop a seller cancelling after delivery is confirmed, stop a student cancelling a paid session within 15 minutes of the start, and only allow a release after completion or a refund after cancellation. Around that sit live chat with read receipts, ratings and reviews, report and block, a wallet PIN, PASA Plus subscriptions with boosts and a lower commission, and an admin dashboard for approvals, moderation, payments and revenue, where fees and commission are set in settings instead of code. I also made the launch promo video in Remotion.",
+    outcome:
+      "A working prototype with real accounts, a shared database and live chat, built for the feasibility study defense, with dummy payments only so no real money moves. Testing paid off: a tester found that a buyer could cancel and get refunded after receiving an item, so I closed it with delivery confirmation from both sides, enforced in the database, then applied the same rule to tutoring sessions. Distributed as an Android APK with over the air updates through Expo Updates, plus the live web app.",
+    year: "2026",
+    status: "Live",
+    href: "https://pasaph.vercel.app",
+    tags: ["React Native", "Expo", "Supabase", "PostgreSQL", "Database triggers", "Realtime chat", "Marketplace", "Admin dashboard", "Remotion", "Vercel"],
+    screenshots: [
+      {
+        src: "/case-studies/pasa/01-landing-hero.jpg",
+        alt: "PASA landing page in light mode with the headline 'Pass the subject. Pass on the book.', the tagline Turn Potential Into PASAbilities, Create a free account and See how it works buttons, Google Play and App Store badges, sticky note cards showing a tutoring request, a tutor's earnings breakdown with a 10% app commission, and a Casio calculator listing, above stats for 100% protected, 0 hidden fees, 1 centralized hub and 55+ programs",
+        caption: "The landing page, a student marketplace for tutoring and secondhand school items in Santa Rosa, Laguna.",
+      },
+      {
+        src: "/case-studies/pasa/02-how-it-works.jpg",
+        alt: "PASA How it works section in light mode, two columns of three numbered steps: If you need help (sign up and verify, post or browse, book and pay) and If you can help (apply to tutor, accept bookings, get paid)",
+        caption: "How it works, both sides of the marketplace: students who need help and students who can give it.",
+      },
+      {
+        src: "/case-studies/pasa/03-tutors.jpg",
+        alt: "PASA Tutors section in light mode with the headline 'Learn from someone who just passed it.' beside three sample tutor cards showing year and program, subjects, hourly rate from 150 to 180 pesos, online platform (Zoom, Google Meet, MS Teams) and star rating",
+        caption: "Tutors are students who did well in the subject, reviewed by the PASA team and rated after every session.",
+      },
+      {
+        src: "/case-studies/pasa/04-assets.jpg",
+        alt: "PASA Assets section in light mode, four item cards (Casio fx-991EX ClassWiz 900 pesos, Cost Accounting by Guerrero 420 pesos, a notebook set 90 pesos, and a drafting set with T-square 250 pesos) beside the headline 'The calculator you needed for one sem, someone else needs next sem.'",
+        caption: "Assets, buy and sell academic items. The money is released only once the buyer confirms they got the item.",
+      },
+      {
+        src: "/case-studies/pasa/05-payments.jpg",
+        alt: "PASA Payments section in light mode with the headline 'Nobody gets paid until you say it went well.' and four connected steps: You pay, PASA holds it, You confirm, They get paid, followed by the Safety section listing school ID verification and the partner colleges",
+        caption: "Held payments, enforced by database triggers so neither side can cancel once delivery or a session is confirmed.",
+      },
+      {
+        src: "/case-studies/pasa/06-pasa-plus.jpg",
+        alt: "PASA Plus section in light mode, 'For tutors and sellers who want to be seen first', with four plans: 1 month 49 pesos, 3 months 129 pesos, 6 months 239 pesos, and 1 year 449 pesos marked Best value, above the Questions FAQ",
+        caption: "PASA Plus, a subscription with monthly boosts, a lower commission and a Plus badge. Prices are set by an admin, not in code.",
+      },
+    ],
+  },
+  {
     name: "Bible Buddy — Reading & Study App",
     category: "Full-Stack",
     problem:
